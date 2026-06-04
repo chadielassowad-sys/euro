@@ -26,3 +26,5 @@ extracted/
 # Backup
 *.bak
 *~
+
+.vercel

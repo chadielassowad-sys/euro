@@ -4,6 +4,7 @@ const THEO_STAR = 16.67;
 let statsData = null;
 let probMode = "combined";
 let lastCombos = null;
+let comboHistory = JSON.parse(localStorage.getItem("comboHistory") || "[]");
 
 async function loadStats() {
   const res = await fetch(API);
@@ -580,7 +581,7 @@ function generateThreeCombinations(scores) {
   return results;
 }
 
-function renderComboCard(combo, index) {
+function renderComboCard(combo, index, showActions = true) {
   const card = el("div", { className: "combo-card" });
   card.appendChild(el("div", { className: "combo-label" }, [combo.name]));
   card.appendChild(el("h4", {}, [combo.title]));
@@ -599,8 +600,20 @@ function renderComboCard(combo, index) {
   
   if (combo.analysis) {
     const details = el("div", { className: "combo-details" });
-    details.innerHTML = `Somme: ${combo.analysis.sum} • ${combo.analysis.even}P/${5 - combo.analysis.even}I${combo.analysis.low ? ` • ${combo.analysis.low}B/${5 - combo.analysis.low}H` : ""}`;
+    const spread = combo.analysis.spread || (Math.max(...combo.balls) - Math.min(...combo.balls));
+    details.innerHTML = `Somme: ${combo.analysis.sum} • ${combo.analysis.even}P/${5 - combo.analysis.even}I${combo.analysis.low ? ` • ${combo.analysis.low}B/${5 - combo.analysis.low}H` : ""} • Écart: ${spread}`;
     card.appendChild(details);
+  }
+  
+  if (showActions) {
+    const actions = el("div", { className: "combo-actions" });
+    const copyBtn = el("button", { 
+      className: "btn-action",
+      title: "Copier la combinaison"
+    }, ["📋"]);
+    copyBtn.onclick = () => copyCombo(combo);
+    actions.appendChild(copyBtn);
+    card.appendChild(actions);
   }
   
   return card;
@@ -610,6 +623,13 @@ function displayThreeCombinations() {
   if (!statsData) return;
   const scores = buildProbabilityScores(statsData);
   const combos = generateThreeCombinations(scores);
+
+  // Sauvegarder dans l'historique
+  const timestamp = new Date().toISOString();
+  comboHistory.unshift({ timestamp, combos });
+  if (comboHistory.length > 50) comboHistory = comboHistory.slice(0, 50);
+  localStorage.setItem("comboHistory", JSON.stringify(comboHistory));
+  updateHistoryBadge();
 
   const container = document.getElementById("combo-results");
   const cards = document.getElementById("combo-cards");
@@ -703,15 +723,162 @@ function closeProbPanel() {
   document.body.style.overflow = "";
 }
 
+function copyCombo(combo) {
+  const text = `${combo.name} - ${combo.title}\nBoules: ${combo.balls.join(", ")}\nÉtoiles: ${combo.stars.join(", ")}\nScore: ${combo.score}`;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast("✅ Combinaison copiée !");
+  });
+}
+
+function exportAllCombos() {
+  if (!lastCombos) return;
+  let text = "=== MES COMBINAISONS EUROMILLIONS ===\n";
+  text += `Générées le ${new Date().toLocaleString("fr-FR")}\n\n`;
+  lastCombos.forEach((c, i) => {
+    text += `${i + 1}. ${c.name} - ${c.title}\n`;
+    text += `   Boules: ${c.balls.join(" - ")}\n`;
+    text += `   Étoiles: ${c.stars.join(" - ")}\n`;
+    text += `   Score: ${c.score}\n`;
+    text += `   Analyse: Somme ${c.analysis.sum}, ${c.analysis.even}P/${5 - c.analysis.even}I\n\n`;
+  });
+  
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `euromillions-combos-${Date.now()}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("📥 Combinaisons exportées !");
+}
+
+function showAllStrategies() {
+  if (!statsData || !window.advancedCombos) return;
+  
+  const allCombos = [];
+  for (let i = 0; i < 6; i++) {
+    const combos = window.advancedCombos.generate(statsData);
+    combos.forEach(c => {
+      const key = `${c.balls.join("-")}|${c.stars.join("-")}`;
+      if (!allCombos.find(x => `${x.balls.join("-")}|${x.stars.join("-")}` === key)) {
+        allCombos.push(c);
+      }
+    });
+  }
+  
+  const modal = el("div", { className: "prob-overlay", id: "all-strategies-overlay" });
+  const content = el("div", { className: "prob-modal" });
+  
+  const header = el("div", { className: "prob-modal-header" });
+  header.appendChild(el("div", {}, [
+    el("h2", {}, ["Toutes les stratégies"]),
+    el("p", { className: "prob-modal-sub" }, [`${allCombos.length} combinaisons uniques générées`])
+  ]));
+  const closeBtn = el("button", { className: "prob-close" }, ["×"]);
+  closeBtn.onclick = () => modal.remove();
+  header.appendChild(closeBtn);
+  content.appendChild(header);
+  
+  const grid = el("div", { className: "all-strategies-grid" });
+  allCombos.slice(0, 12).forEach((c, i) => grid.appendChild(renderComboCard(c, i)));
+  content.appendChild(grid);
+  
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+function showHistory() {
+  const modal = el("div", { className: "prob-overlay", id: "history-overlay" });
+  const content = el("div", { className: "prob-modal" });
+  
+  const header = el("div", { className: "prob-modal-header" });
+  header.appendChild(el("div", {}, [
+    el("h2", {}, ["Historique des générations"]),
+    el("p", { className: "prob-modal-sub" }, [`${comboHistory.length} sessions enregistrées`])
+  ]));
+  const closeBtn = el("button", { className: "prob-close" }, ["×"]);
+  closeBtn.onclick = () => modal.remove();
+  header.appendChild(closeBtn);
+  content.appendChild(header);
+  
+  if (comboHistory.length === 0) {
+    content.appendChild(el("p", { style: "text-align:center;color:var(--text-muted);padding:2rem" }, [
+      "Aucune combinaison générée pour le moment."
+    ]));
+  } else {
+    const clearBtn = el("button", { className: "btn-prob-secondary", style: "margin:0 auto 1rem" }, ["🗑️ Vider l'historique"]);
+    clearBtn.onclick = () => {
+      if (confirm("Êtes-vous sûr de vouloir supprimer tout l'historique ?")) {
+        comboHistory = [];
+        localStorage.removeItem("comboHistory");
+        modal.remove();
+        updateHistoryBadge();
+        showToast("🗑️ Historique supprimé");
+      }
+    };
+    content.appendChild(clearBtn);
+    
+    const historyList = el("div", { className: "history-list" });
+    comboHistory.forEach((entry, idx) => {
+      const item = el("div", { className: "history-item-card" });
+      const date = new Date(entry.timestamp);
+      item.appendChild(el("div", { className: "history-date" }, [
+        `${date.toLocaleDateString("fr-FR")} à ${date.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}`
+      ]));
+      
+      const grid = el("div", { className: "history-combos-grid" });
+      entry.combos.forEach((c, i) => grid.appendChild(renderComboCard(c, i, false)));
+      item.appendChild(grid);
+      historyList.appendChild(item);
+    });
+    content.appendChild(historyList);
+  }
+  
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+function updateHistoryBadge() {
+  const badge = document.getElementById("history-badge");
+  if (badge) {
+    badge.textContent = comboHistory.length;
+    badge.style.display = comboHistory.length > 0 ? "inline-block" : "none";
+  }
+}
+
+function showToast(message) {
+  const toast = el("div", { className: "toast" }, [message]);
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+
 function setupProbabilityButton() {
   document.getElementById("btn-generate-combos").addEventListener("click", onGenerateClick);
   document.getElementById("btn-show-prob").addEventListener("click", openProbPanel);
   document.getElementById("btn-close-prob").addEventListener("click", closeProbPanel);
+  document.getElementById("btn-export-combos")?.addEventListener("click", exportAllCombos);
+  document.getElementById("btn-all-strategies")?.addEventListener("click", showAllStrategies);
+  document.getElementById("btn-history")?.addEventListener("click", showHistory);
+  
   document.getElementById("prob-overlay").addEventListener("click", (e) => {
     if (e.target.id === "prob-overlay") closeProbPanel();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeProbPanel();
+    if (e.key === "Escape") {
+      closeProbPanel();
+      document.getElementById("all-strategies-overlay")?.remove();
+      document.getElementById("history-overlay")?.remove();
+    }
   });
 
   document.querySelectorAll(".prob-mode").forEach((btn) => {
@@ -727,6 +894,8 @@ function setupProbabilityButton() {
     e.preventDefault();
     onGenerateClick();
   });
+  
+  updateHistoryBadge();
 }
 
 async function init() {

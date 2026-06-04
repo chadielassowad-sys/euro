@@ -60,11 +60,20 @@
             <span class="btn-prob-text">Générer 3 combinaisons possibles</span>
           </button>
           <p class="prob-cta-hint">Chaque clic propose 3 nouvelles grilles basées sur les probabilités</p>
-          <button type="button" class="btn-prob-secondary" id="btn-show-prob">Voir le détail des probabilités</button>
+          <div class="prob-actions">
+            <button type="button" class="btn-prob-secondary" id="btn-show-prob">📊 Voir le détail des probabilités</button>
+            <button type="button" class="btn-prob-secondary" id="btn-all-strategies">🎯 Toutes les stratégies</button>
+            <button type="button" class="btn-prob-secondary" id="btn-history">
+              📜 Historique <span class="badge-count" id="history-badge">0</span>
+            </button>
+          </div>
         </div>
 
         <div class="combo-results" id="combo-results" hidden>
-          <h3 class="combo-results-title">Vos 3 combinaisons</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem">
+            <h3 class="combo-results-title" style="margin:0">Vos 3 combinaisons</h3>
+            <button type="button" class="btn-export" id="btn-export-combos">📥 Exporter en .txt</button>
+          </div>
           <div class="combo-cards" id="combo-cards"></div>
         </div>
       </section>

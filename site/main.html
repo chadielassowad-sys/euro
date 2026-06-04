@@ -55,11 +55,49 @@
         <div class="last-draw" id="last-draw"></div>
 
         <div class="prob-cta">
+          <!-- Budget Selector -->
+          <div class="budget-selector">
+            <h3 class="budget-title">💰 Choisissez votre budget</h3>
+            <p class="budget-subtitle">Prix par grille : 2,50€</p>
+            
+            <div class="budget-presets">
+              <button type="button" class="budget-btn" data-budget="5">5€<span class="grid-count">2 grilles</span></button>
+              <button type="button" class="budget-btn" data-budget="10">10€<span class="grid-count">4 grilles</span></button>
+              <button type="button" class="budget-btn active" data-budget="20">20€<span class="grid-count">8 grilles</span></button>
+              <button type="button" class="budget-btn" data-budget="50">50€<span class="grid-count">20 grilles</span></button>
+              <button type="button" class="budget-btn" data-budget="100">100€<span class="grid-count">40 grilles</span></button>
+            </div>
+            
+            <div class="budget-custom">
+              <label for="custom-budget">Ou budget personnalisé :</label>
+              <div class="custom-input-group">
+                <input type="number" id="custom-budget" min="2.5" step="2.5" placeholder="Ex: 15" />
+                <span>€</span>
+                <button type="button" id="btn-apply-custom" class="btn-apply">Appliquer</button>
+              </div>
+            </div>
+            
+            <div class="budget-summary" id="budget-summary">
+              <div class="summary-item">
+                <span class="summary-label">Budget sélectionné</span>
+                <span class="summary-value" id="selected-budget">20,00€</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Nombre de grilles</span>
+                <span class="summary-value" id="selected-grids">8</span>
+              </div>
+              <div class="summary-item highlight">
+                <span class="summary-label">Coût total</span>
+                <span class="summary-value" id="total-cost">20,00€</span>
+              </div>
+            </div>
+          </div>
+
           <button type="button" class="btn-prob" id="btn-generate-combos">
             <span class="btn-prob-icon">🎲</span>
-            <span class="btn-prob-text">Générer 3 combinaisons possibles</span>
+            <span class="btn-prob-text" id="generate-btn-text">Générer 8 combinaisons</span>
           </button>
-          <p class="prob-cta-hint">Chaque clic propose 3 nouvelles grilles basées sur les probabilités</p>
+          <p class="prob-cta-hint">Combinaisons optimisées selon votre budget</p>
           <div class="prob-actions">
             <button type="button" class="btn-prob-secondary" id="btn-show-prob">📊 Voir le détail des probabilités</button>
             <button type="button" class="btn-prob-secondary" id="btn-all-strategies">🎯 Toutes les stratégies</button>
@@ -71,10 +109,11 @@
 
         <div class="combo-results" id="combo-results" hidden>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem">
-            <h3 class="combo-results-title" style="margin:0">Vos 3 combinaisons</h3>
+            <h3 class="combo-results-title" style="margin:0" id="combo-results-title">Vos combinaisons</h3>
             <button type="button" class="btn-export" id="btn-export-combos">📥 Exporter en .txt</button>
           </div>
           <div class="combo-cards" id="combo-cards"></div>
+          <div class="combo-cost-summary" id="combo-cost-summary"></div>
         </div>
       </section>
 

@@ -1,10 +1,13 @@
 const API = "data/stats.json";
 const THEO_BALL = 10;
 const THEO_STAR = 16.67;
+const GRID_PRICE = 2.5;
 let statsData = null;
 let probMode = "combined";
 let lastCombos = null;
 let comboHistory = JSON.parse(localStorage.getItem("comboHistory") || "[]");
+let selectedBudget = 20;
+let selectedGrids = 8;
 
 async function loadStats() {
   const res = await fetch(API);
@@ -508,77 +511,79 @@ function calcComboScore(balls, stars, ballMap, starMap) {
   return Math.round((ballAvg * 0.6 + starAvg * 0.3 + avgReg * 10 * 0.1) * 100) / 100;
 }
 
-function generateThreeCombinations(scores) {
+function generateCombinationsByCount(scores, count) {
   if (window.advancedCombos && statsData) {
-    return window.advancedCombos.generate(statsData);
+    const results = [];
+    const usedKeys = new Set();
+    
+    // Générer les combinaisons en utilisant toutes les stratégies
+    while (results.length < count) {
+      const combos = window.advancedCombos.generate(statsData);
+      for (const combo of combos) {
+        const key = `${combo.balls.join("-")}|${combo.stars.join("-")}`;
+        if (!usedKeys.has(key) && results.length < count) {
+          usedKeys.add(key);
+          results.push(combo);
+        }
+      }
+      
+      // Protection contre boucle infinie
+      if (results.length === 0 && usedKeys.size > count * 3) break;
+    }
+    
+    return results.slice(0, count);
   }
   
+  // Fallback simple si advanced.js n'est pas disponible
   const ballMap = Object.fromEntries(scores.balls.map((b) => [b.num, b]));
   const starMap = Object.fromEntries(scores.stars.map((s) => [s.num, s]));
   const usedKeys = new Set();
-  const strategies = [
-    {
-      name: "SMART",
-      title: "Score intelligent élevé",
-      desc: "Algorithme avancé basé sur smart_score + régularité",
-      ballKey: "smart_score",
-      starKey: "smart_score",
-      ballPool: scores.balls,
-      starPool: scores.stars,
-    },
-    {
-      name: "MOMENTUM",
-      title: "Tendance forte",
-      desc: "Numéros en progression récente",
-      ballKey: "combined",
-      starKey: "combined",
-      ballPool: [...scores.balls].sort((a, b) => b.combined - a.combined).slice(0, 20),
-      starPool: [...scores.stars].sort((a, b) => b.combined - a.combined).slice(0, 6),
-    },
-    {
-      name: "ÉQUILIBRE",
-      title: "Mix chaud & retard optimisé",
-      desc: "Numéros fréquents + absents avec régularité",
-      ballKey: "combined",
-      starKey: "combined",
-      ballPool: [
-        ...[...scores.balls].sort((a, b) => (b.smart_score || 0) - (a.smart_score || 0)).slice(0, 15),
-        ...[...scores.balls].sort((a, b) => (b.overdue_score || 0) - (a.overdue_score || 0)).slice(0, 10),
-      ].filter((v, i, a) => a.findIndex((x) => x.num === v.num) === i),
-      starPool: scores.stars,
-    },
-  ];
-
   const results = [];
-
-  for (const strat of strategies) {
+  
+  const strategies = [
+    { name: "SMART", title: "Score intelligent", desc: "Algorithme avancé", ballKey: "smart_score", starKey: "smart_score" },
+    { name: "HOT", title: "Numéros chauds", desc: "Les plus fréquents", ballKey: "combined", starKey: "combined" },
+    { name: "MIX", title: "Équilibré", desc: "Mix optimal", ballKey: "smart_score", starKey: "combined" },
+  ];
+  
+  for (let i = 0; i < count; i++) {
+    const strat = strategies[i % strategies.length];
     let balls, stars, key, tries = 0;
+    
     do {
-      balls = weightedPick(strat.ballPool, 5, strat.ballKey);
-      stars = weightedPick(strat.starPool, 2, strat.starKey);
+      balls = weightedPick(scores.balls, 5, strat.ballKey);
+      stars = weightedPick(scores.stars, 2, strat.starKey);
       key = comboKey(balls, stars);
       tries++;
-    } while (usedKeys.has(key) && tries < 40);
-
+    } while (usedKeys.has(key) && tries < 50);
+    
     usedKeys.add(key);
     const score = calcComboScore(balls, stars, ballMap, starMap);
-    
     const ballSum = balls.reduce((a, b) => a + b, 0);
     const evenCount = balls.filter((b) => b % 2 === 0).length;
+    const lowCount = balls.filter((b) => b <= 25).length;
     
     results.push({
-      ...strat,
+      name: strat.name,
+      title: strat.title,
+      desc: strat.desc,
       balls,
       stars,
       score,
       analysis: {
         sum: ballSum,
         even: evenCount,
+        low: lowCount,
+        spread: Math.max(...balls) - Math.min(...balls),
       },
     });
   }
-
+  
   return results;
+}
+
+function generateThreeCombinations(scores) {
+  return generateCombinationsByCount(scores, 3);
 }
 
 function renderComboCard(combo, index, showActions = true) {
@@ -619,28 +624,46 @@ function renderComboCard(combo, index, showActions = true) {
   return card;
 }
 
-function displayThreeCombinations() {
+function displayCombinations(count = null) {
   if (!statsData) return;
+  const numCombos = count || selectedGrids;
   const scores = buildProbabilityScores(statsData);
-  const combos = generateThreeCombinations(scores);
+  const combos = generateCombinationsByCount(scores, numCombos);
 
   // Sauvegarder dans l'historique
   const timestamp = new Date().toISOString();
-  comboHistory.unshift({ timestamp, combos });
+  comboHistory.unshift({ timestamp, combos, budget: selectedBudget });
   if (comboHistory.length > 50) comboHistory = comboHistory.slice(0, 50);
   localStorage.setItem("comboHistory", JSON.stringify(comboHistory));
   updateHistoryBadge();
 
   const container = document.getElementById("combo-results");
   const cards = document.getElementById("combo-cards");
+  const title = document.getElementById("combo-results-title");
+  const costSummary = document.getElementById("combo-cost-summary");
+  
+  title.textContent = `Vos ${numCombos} combinaison${numCombos > 1 ? 's' : ''}`;
   cards.innerHTML = "";
   combos.forEach((c) => cards.appendChild(renderComboCard(c)));
+  
+  // Afficher le récapitulatif des coûts
+  const totalCost = (numCombos * GRID_PRICE).toFixed(2);
+  costSummary.innerHTML = `
+    <div class="cost-info">
+      <span>💰 Coût total : <strong>${totalCost}€</strong> (${numCombos} grille${numCombos > 1 ? 's' : ''} × ${GRID_PRICE}€)</span>
+    </div>
+  `;
+  
   container.hidden = false;
   container.classList.add("fresh");
   setTimeout(() => container.classList.remove("fresh"), 500);
   container.scrollIntoView({ behavior: "smooth", block: "nearest" });
   lastCombos = combos;
   return combos;
+}
+
+function displayThreeCombinations() {
+  return displayCombinations(3);
 }
 
 function renderProbPanel(combosFromClick) {
@@ -704,16 +727,34 @@ function openProbPanel() {
   renderProbPanel(combos);
 }
 
+function updateBudget(budget) {
+  selectedBudget = budget;
+  selectedGrids = Math.floor(budget / GRID_PRICE);
+  
+  document.getElementById("selected-budget").textContent = `${budget.toFixed(2)}€`;
+  document.getElementById("selected-grids").textContent = selectedGrids;
+  document.getElementById("total-cost").textContent = `${(selectedGrids * GRID_PRICE).toFixed(2)}€`;
+  document.getElementById("generate-btn-text").textContent = `Générer ${selectedGrids} combinaison${selectedGrids > 1 ? 's' : ''}`;
+  
+  // Mettre à jour le bouton actif
+  document.querySelectorAll(".budget-btn").forEach(btn => {
+    btn.classList.remove("active");
+    if (parseFloat(btn.dataset.budget) === budget) {
+      btn.classList.add("active");
+    }
+  });
+}
+
 function onGenerateClick() {
   if (!statsData) return;
   const btn = document.getElementById("btn-generate-combos");
   btn.disabled = true;
+  const originalText = btn.querySelector(".btn-prob-text").textContent;
   btn.querySelector(".btn-prob-text").textContent = "Génération…";
   setTimeout(() => {
-    displayThreeCombinations();
+    displayCombinations(selectedGrids);
     btn.disabled = false;
-    btn.querySelector(".btn-prob-text").textContent =
-      "Générer 3 combinaisons possibles";
+    btn.querySelector(".btn-prob-text").textContent = originalText;
   }, 200);
 }
 
@@ -870,6 +911,31 @@ function setupProbabilityButton() {
   document.getElementById("btn-all-strategies")?.addEventListener("click", showAllStrategies);
   document.getElementById("btn-history")?.addEventListener("click", showHistory);
   
+  // Budget buttons
+  document.querySelectorAll(".budget-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const budget = parseFloat(btn.dataset.budget);
+      updateBudget(budget);
+    });
+  });
+  
+  // Custom budget
+  document.getElementById("btn-apply-custom").addEventListener("click", () => {
+    const customBudget = parseFloat(document.getElementById("custom-budget").value);
+    if (customBudget && customBudget >= GRID_PRICE) {
+      updateBudget(customBudget);
+      document.getElementById("custom-budget").value = "";
+    } else {
+      showToast("⚠️ Budget minimum : " + GRID_PRICE + "€");
+    }
+  });
+  
+  document.getElementById("custom-budget").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      document.getElementById("btn-apply-custom").click();
+    }
+  });
+  
   document.getElementById("prob-overlay").addEventListener("click", (e) => {
     if (e.target.id === "prob-overlay") closeProbPanel();
   });
@@ -896,6 +962,7 @@ function setupProbabilityButton() {
   });
   
   updateHistoryBadge();
+  updateBudget(selectedBudget);
 }
 
 async function init() {

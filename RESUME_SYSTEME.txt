@@ -1,0 +1,214 @@
+═══════════════════════════════════════════════════════════════
+   EURO STATS PRO — SYSTÈME D'ANALYSE ULTRA-AVANCÉ
+   Version 2.0 | 2026-06-04
+═══════════════════════════════════════════════════════════════
+
+🎯 OBJECTIF : Analyser 1 951 tirages Euromillions (2004-2026) avec
+    algorithmes professionnels pour générer les meilleures combinaisons
+    statistiquement possibles.
+
+═══════════════════════════════════════════════════════════════
+📊 ANALYSES EFFECTUÉES
+═══════════════════════════════════════════════════════════════
+
+✓ SMART SCORE
+  Formule : (Fréquence × 0.4) + (Overdue × 0.35) + (Régularité × 0.25)
+  Identifie les numéros les plus "probables" statistiquement
+
+✓ RÉGULARITÉ
+  Mesure l'écart-type des intervalles
+  Numéros réguliers = plus prévisibles
+
+✓ OVERDUE SCORE
+  Retard actuel / intervalle moyen
+  Détecte les numéros "dus"
+
+✓ MOMENTUM
+  Delta 50 derniers vs 50 précédents tirages
+  Identifie les tendances en cours
+
+✓ PATTERNS
+  · 30 paires les plus fréquentes
+  · 20 triplets identifiés
+  · 15 numéros consécutifs
+  · Force de chaque paire (%)
+
+✓ ANALYSE PAR JOUR
+  Numéros favoris mardi/vendredi
+  Patterns spécifiques à chaque jour
+
+═══════════════════════════════════════════════════════════════
+🚀 6 ALGORITHMES DE GÉNÉRATION
+═══════════════════════════════════════════════════════════════
+
+1. ULTRA SMART
+   → Score intelligent maximum
+   → Pondération : smart × 1.5 + reg × 0.8 + overdue × 0.7
+
+2. HOT MOMENTUM
+   → Numéros en progression
+   → Focus sur delta positif récent
+
+3. CHASSEUR (Overdue Hunter)
+   → Retard critique + régularité
+   → Numéros "dus" avec historique stable
+
+4. ÉQUILIBRE
+   → Mix 50/50 chauds/retard
+   → Optimise risque/reward
+
+5. PATTERNS
+   → Basé sur paires/triplets
+   → Utilise l'historique de combos
+
+6. CONTRARIAN
+   → Numéros froids réguliers
+   → Parie sur retour à la moyenne
+
+═══════════════════════════════════════════════════════════════
+💡 UTILISATION DU SYSTÈME
+═══════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : LANCER LE SITE
+  cd c:\Users\chadi\Desktop\euro\site
+  python -m http.server 8080
+  → http://localhost:8080
+
+ÉTAPE 2 : GÉNÉRER DES COMBINAISONS
+  · Clic sur bouton doré
+  · 3 nouvelles grilles à chaque clic
+  · Recommandé : cliquer 5 fois (15 grilles)
+
+ÉTAPE 3 : SÉLECTIONNER
+  · Garder score > 0.85 (excellent)
+  · Vérifier patterns (somme 120-135)
+  · Valider parité (2P/3I ou 3P/2I)
+
+ÉTAPE 4 : JOUER
+  · 3-5 grilles recommandées
+  · Mixer différentes stratégies
+  · Vérifier jour (mardi/vendredi)
+
+═══════════════════════════════════════════════════════════════
+📈 MÉTRIQUES PAR NUMÉRO
+═══════════════════════════════════════════════════════════════
+
+Chaque boule/étoile dispose de :
+
+  ▸ Count         : Nombre de sorties
+  ▸ Fréquence (%) : % de sorties
+  ▸ Smart Score   : 0-2 (>1 = excellent)
+  ▸ Régularité    : 0-0.15 (>0.12 = très régulier)
+  ▸ Overdue       : 0-3 (>1.5 = en retard)
+  ▸ Intervalle    : Moyenne entre sorties
+  ▸ Écart-type    : Variabilité intervalle
+  ▸ Dernier       : Tirages depuis dernière sortie
+
+═══════════════════════════════════════════════════════════════
+🎯 INTERPRÉTATION DES SCORES
+═══════════════════════════════════════════════════════════════
+
+SMART SCORE COMBINAISON
+  > 1.0    ★★★★★  Excellent (top 5%)
+  0.8-1.0  ★★★★   Très bon (top 20%)
+  0.6-0.8  ★★★    Bon (top 40%)
+  < 0.6    ★★     Moyen
+
+SMART SCORE NUMÉRO
+  > 1.2    = Très chaud
+  0.8-1.2  = Équilibré
+  < 0.8    = Froid
+
+RÉGULARITÉ
+  > 0.12   = Très régulier (prévisible)
+  0.08-0.12 = Régulier
+  < 0.08   = Aléatoire
+
+OVERDUE
+  > 2.0    = Très en retard
+  1.0-2.0  = Modérément en retard
+  < 1.0    = Normal
+
+═══════════════════════════════════════════════════════════════
+📊 RÉSULTATS D'ANALYSE (1 951 tirages)
+═══════════════════════════════════════════════════════════════
+
+TOP 5 BOULES (Smart Score)
+  44  → Smart 1.044 · Régulier · 222 sorties
+  29  → Smart 0.861 · Très régulier · 216 sorties
+  19  → Smart 0.745 · Régulier · 217 sorties
+  10  → Smart 0.650 · 212 sorties
+  50  → Smart 0.640 · 209 sorties
+
+TOP PAIRES
+  15-28  → 28 fois (1.44%)
+  4-23   → 28 fois
+  23-24  → 28 fois (consécutifs)
+
+MOMENTUM FORT (50 derniers)
+  (Analyse dynamique dans le site)
+
+═══════════════════════════════════════════════════════════════
+🔄 MISE À JOUR DES DONNÉES
+═══════════════════════════════════════════════════════════════
+
+Après chaque nouveau tirage officiel :
+
+  python scripts/advanced_analyze.py
+
+Le fichier stats.json est automatiquement régénéré.
+
+═══════════════════════════════════════════════════════════════
+📁 FICHIERS IMPORTANTS
+═══════════════════════════════════════════════════════════════
+
+  site/index.html           → Interface web
+  site/js/advanced.js       → Algorithmes PRO
+  site/data/stats.json      → Données analysées
+  
+  scripts/advanced_analyze.py  → Script d'analyse
+  
+  ANALYSE_PRO.md           → Détails métriques
+  GUIDE_UTILISATION.md     → 6 stratégies de jeu
+  README.md                → Documentation générale
+
+═══════════════════════════════════════════════════════════════
+⚠️ DISCLAIMER IMPORTANT
+═══════════════════════════════════════════════════════════════
+
+CE SYSTÈME ANALYSE L'HISTORIQUE, IL NE PRÉDIT PAS L'AVENIR.
+
+Chaque tirage est INDÉPENDANT et ALÉATOIRE :
+  → Probabilité jackpot : 1 / 139 838 160
+  → 10% par boule · 16,7% par étoile
+
+Les combinaisons générées sont des SUGGESTIONS STATISTIQUES
+basées sur l'historique, pas des garanties de gain.
+
+Les métriques "smart score", "overdue", "régularité" sont des
+indicateurs historiques qui peuvent aider à la sélection, mais
+ne changent PAS les probabilités mathématiques du jeu.
+
+JOUEZ RESPONSABLE. 18+
+
+═══════════════════════════════════════════════════════════════
+✨ VERSION PRO 2.0 — FONCTIONNALITÉS
+═══════════════════════════════════════════════════════════════
+
+✓ Analyse ultra-complète de 1 951 tirages
+✓ 6 algorithmes de génération avancés
+✓ Smart score intelligent par numéro
+✓ Régularité et overdue calculés
+✓ Momentum 50 vs 50 tirages
+✓ 30 paires + 20 triplets + 15 consécutifs
+✓ Analyse par jour de la semaine
+✓ Génération interactive 3 combos/clic
+✓ Validation automatique des patterns
+✓ Interface moderne et responsive
+✓ Performance : <200ms génération
+
+═══════════════════════════════════════════════════════════════
+
+Support : Voir GUIDE_UTILISATION.md pour stratégies détaillées
+
+═══════════════════════════════════════════════════════════════

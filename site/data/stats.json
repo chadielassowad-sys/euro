@@ -1,0 +1,3268 @@
+{
+  "meta": {
+    "total_draws": 1951,
+    "first_date": "2004-02-13",
+    "last_date": "2026-06-02",
+    "last_draw": {
+      "id": "26044",
+      "date": "2026-06-02",
+      "balls": [
+        6,
+        9,
+        17,
+        18,
+        42
+      ],
+      "stars": [
+        7,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    "generated_at": "2026-06-04 14:25"
+  },
+  "balls": {
+    "frequencies": [
+      {
+        "num": 44,
+        "count": 222,
+        "pct": 2.28,
+        "expected": 195.1,
+        "deviation": 26.9,
+        "last_draw_ago": 14,
+        "avg_interval": 8.7,
+        "std_interval": 7.7,
+        "overdue_score": 1.6,
+        "regularity": 0.115,
+        "smart_score": 1.044
+      },
+      {
+        "num": 42,
+        "count": 221,
+        "pct": 2.27,
+        "expected": 195.1,
+        "deviation": 25.9,
+        "last_draw_ago": 0,
+        "avg_interval": 8.8,
+        "std_interval": 8.4,
+        "overdue_score": 0.0,
+        "regularity": 0.106,
+        "smart_score": 0.48
+      },
+      {
+        "num": 23,
+        "count": 219,
+        "pct": 2.25,
+        "expected": 195.1,
+        "deviation": 23.9,
+        "last_draw_ago": 2,
+        "avg_interval": 8.9,
+        "std_interval": 8.5,
+        "overdue_score": 0.22,
+        "regularity": 0.106,
+        "smart_score": 0.553
+      },
+      {
+        "num": 19,
+        "count": 217,
+        "pct": 2.22,
+        "expected": 195.1,
+        "deviation": 21.9,
+        "last_draw_ago": 7,
+        "avg_interval": 9.0,
+        "std_interval": 8.1,
+        "overdue_score": 0.78,
+        "regularity": 0.109,
+        "smart_score": 0.745
+      },
+      {
+        "num": 29,
+        "count": 216,
+        "pct": 2.21,
+        "expected": 195.1,
+        "deviation": 20.9,
+        "last_draw_ago": 10,
+        "avg_interval": 9.0,
+        "std_interval": 7.4,
+        "overdue_score": 1.11,
+        "regularity": 0.12,
+        "smart_score": 0.861
+      },
+      {
+        "num": 17,
+        "count": 213,
+        "pct": 2.18,
+        "expected": 195.1,
+        "deviation": 17.9,
+        "last_draw_ago": 0,
+        "avg_interval": 8.9,
+        "std_interval": 7.7,
+        "overdue_score": 0.0,
+        "regularity": 0.114,
+        "smart_score": 0.465
+      },
+      {
+        "num": 10,
+        "count": 212,
+        "pct": 2.17,
+        "expected": 195.1,
+        "deviation": 16.9,
+        "last_draw_ago": 5,
+        "avg_interval": 9.2,
+        "std_interval": 8.6,
+        "overdue_score": 0.54,
+        "regularity": 0.104,
+        "smart_score": 0.65
+      },
+      {
+        "num": 21,
+        "count": 212,
+        "pct": 2.17,
+        "expected": 195.1,
+        "deviation": 16.9,
+        "last_draw_ago": 37,
+        "avg_interval": 9.0,
+        "std_interval": 8.7,
+        "overdue_score": 3,
+        "regularity": 0.103,
+        "smart_score": 1.51
+      },
+      {
+        "num": 50,
+        "count": 209,
+        "pct": 2.14,
+        "expected": 195.1,
+        "deviation": 13.9,
+        "last_draw_ago": 24,
+        "avg_interval": 9.3,
+        "std_interval": 8.9,
+        "overdue_score": 2.59,
+        "regularity": 0.101,
+        "smart_score": 1.36
+      },
+      {
+        "num": 37,
+        "count": 208,
+        "pct": 2.13,
+        "expected": 195.1,
+        "deviation": 12.9,
+        "last_draw_ago": 2,
+        "avg_interval": 9.4,
+        "std_interval": 8.1,
+        "overdue_score": 0.21,
+        "regularity": 0.11,
+        "smart_score": 0.527
+      },
+      {
+        "num": 27,
+        "count": 205,
+        "pct": 2.1,
+        "expected": 195.1,
+        "deviation": 9.9,
+        "last_draw_ago": 17,
+        "avg_interval": 9.4,
+        "std_interval": 9.5,
+        "overdue_score": 1.8,
+        "regularity": 0.095,
+        "smart_score": 1.074
+      },
+      {
+        "num": 35,
+        "count": 205,
+        "pct": 2.1,
+        "expected": 195.1,
+        "deviation": 9.9,
+        "last_draw_ago": 1,
+        "avg_interval": 9.5,
+        "std_interval": 9.2,
+        "overdue_score": 0.11,
+        "regularity": 0.098,
+        "smart_score": 0.483
+      },
+      {
+        "num": 25,
+        "count": 204,
+        "pct": 2.09,
+        "expected": 195.1,
+        "deviation": 8.9,
+        "last_draw_ago": 2,
+        "avg_interval": 9.4,
+        "std_interval": 8.6,
+        "overdue_score": 0.21,
+        "regularity": 0.104,
+        "smart_score": 0.518
+      },
+      {
+        "num": 26,
+        "count": 204,
+        "pct": 2.09,
+        "expected": 195.1,
+        "deviation": 8.9,
+        "last_draw_ago": 3,
+        "avg_interval": 9.5,
+        "std_interval": 9.1,
+        "overdue_score": 0.32,
+        "regularity": 0.099,
+        "smart_score": 0.555
+      },
+      {
+        "num": 20,
+        "count": 203,
+        "pct": 2.08,
+        "expected": 195.1,
+        "deviation": 7.9,
+        "last_draw_ago": 4,
+        "avg_interval": 9.5,
+        "std_interval": 9.8,
+        "overdue_score": 0.42,
+        "regularity": 0.093,
+        "smart_score": 0.586
+      },
+      {
+        "num": 45,
+        "count": 203,
+        "pct": 2.08,
+        "expected": 195.1,
+        "deviation": 7.9,
+        "last_draw_ago": 4,
+        "avg_interval": 9.6,
+        "std_interval": 8.6,
+        "overdue_score": 0.42,
+        "regularity": 0.104,
+        "smart_score": 0.589
+      },
+      {
+        "num": 13,
+        "count": 202,
+        "pct": 2.07,
+        "expected": 195.1,
+        "deviation": 6.9,
+        "last_draw_ago": 12,
+        "avg_interval": 9.6,
+        "std_interval": 10.4,
+        "overdue_score": 1.25,
+        "regularity": 0.088,
+        "smart_score": 0.874
+      },
+      {
+        "num": 14,
+        "count": 201,
+        "pct": 2.06,
+        "expected": 195.1,
+        "deviation": 5.9,
+        "last_draw_ago": 1,
+        "avg_interval": 9.7,
+        "std_interval": 8.8,
+        "overdue_score": 0.1,
+        "regularity": 0.102,
+        "smart_score": 0.473
+      },
+      {
+        "num": 4,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 6,
+        "avg_interval": 9.8,
+        "std_interval": 8.8,
+        "overdue_score": 0.61,
+        "regularity": 0.102,
+        "smart_score": 0.647
+      },
+      {
+        "num": 5,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 1,
+        "avg_interval": 9.8,
+        "std_interval": 8.8,
+        "overdue_score": 0.1,
+        "regularity": 0.102,
+        "smart_score": 0.468
+      },
+      {
+        "num": 15,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 25,
+        "avg_interval": 9.7,
+        "std_interval": 8.6,
+        "overdue_score": 2.58,
+        "regularity": 0.104,
+        "smart_score": 1.337
+      },
+      {
+        "num": 24,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.7,
+        "std_interval": 10.3,
+        "overdue_score": 2.68,
+        "regularity": 0.088,
+        "smart_score": 1.368
+      },
+      {
+        "num": 38,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 4,
+        "avg_interval": 9.8,
+        "std_interval": 8.2,
+        "overdue_score": 0.41,
+        "regularity": 0.109,
+        "smart_score": 0.579
+      },
+      {
+        "num": 7,
+        "count": 198,
+        "pct": 2.03,
+        "expected": 195.1,
+        "deviation": 2.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.8,
+        "std_interval": 9.5,
+        "overdue_score": 2.66,
+        "regularity": 0.095,
+        "smart_score": 1.361
+      },
+      {
+        "num": 12,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 4,
+        "avg_interval": 10.0,
+        "std_interval": 8.5,
+        "overdue_score": 0.4,
+        "regularity": 0.106,
+        "smart_score": 0.566
+      },
+      {
+        "num": 34,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 7,
+        "avg_interval": 9.9,
+        "std_interval": 9.9,
+        "overdue_score": 0.7,
+        "regularity": 0.091,
+        "smart_score": 0.668
+      },
+      {
+        "num": 49,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 16,
+        "avg_interval": 9.9,
+        "std_interval": 8.6,
+        "overdue_score": 1.61,
+        "regularity": 0.104,
+        "smart_score": 0.989
+      },
+      {
+        "num": 30,
+        "count": 194,
+        "pct": 1.99,
+        "expected": 195.1,
+        "deviation": -1.1,
+        "last_draw_ago": 11,
+        "avg_interval": 9.9,
+        "std_interval": 9.7,
+        "overdue_score": 1.11,
+        "regularity": 0.094,
+        "smart_score": 0.81
+      },
+      {
+        "num": 6,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 0,
+        "avg_interval": 10.2,
+        "std_interval": 9.2,
+        "overdue_score": 0.0,
+        "regularity": 0.098,
+        "smart_score": 0.416
+      },
+      {
+        "num": 11,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 16,
+        "avg_interval": 10.1,
+        "std_interval": 10.1,
+        "overdue_score": 1.58,
+        "regularity": 0.09,
+        "smart_score": 0.967
+      },
+      {
+        "num": 16,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 12,
+        "avg_interval": 10.2,
+        "std_interval": 11.0,
+        "overdue_score": 1.18,
+        "regularity": 0.084,
+        "smart_score": 0.826
+      },
+      {
+        "num": 39,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 27,
+        "avg_interval": 10.1,
+        "std_interval": 9.7,
+        "overdue_score": 2.67,
+        "regularity": 0.094,
+        "smart_score": 1.35
+      },
+      {
+        "num": 48,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 19,
+        "avg_interval": 10.0,
+        "std_interval": 10.1,
+        "overdue_score": 1.9,
+        "regularity": 0.09,
+        "smart_score": 1.079
+      },
+      {
+        "num": 3,
+        "count": 190,
+        "pct": 1.95,
+        "expected": 195.1,
+        "deviation": -5.1,
+        "last_draw_ago": 5,
+        "avg_interval": 10.3,
+        "std_interval": 10.0,
+        "overdue_score": 0.49,
+        "regularity": 0.091,
+        "smart_score": 0.584
+      },
+      {
+        "num": 28,
+        "count": 188,
+        "pct": 1.93,
+        "expected": 195.1,
+        "deviation": -7.1,
+        "last_draw_ago": 13,
+        "avg_interval": 10.3,
+        "std_interval": 9.9,
+        "overdue_score": 1.26,
+        "regularity": 0.092,
+        "smart_score": 0.849
+      },
+      {
+        "num": 8,
+        "count": 186,
+        "pct": 1.91,
+        "expected": 195.1,
+        "deviation": -9.1,
+        "last_draw_ago": 8,
+        "avg_interval": 10.4,
+        "std_interval": 9.2,
+        "overdue_score": 0.77,
+        "regularity": 0.098,
+        "smart_score": 0.675
+      },
+      {
+        "num": 1,
+        "count": 185,
+        "pct": 1.9,
+        "expected": 195.1,
+        "deviation": -10.1,
+        "last_draw_ago": 14,
+        "avg_interval": 10.5,
+        "std_interval": 10.2,
+        "overdue_score": 1.34,
+        "regularity": 0.09,
+        "smart_score": 0.871
+      },
+      {
+        "num": 9,
+        "count": 185,
+        "pct": 1.9,
+        "expected": 195.1,
+        "deviation": -10.1,
+        "last_draw_ago": 0,
+        "avg_interval": 10.5,
+        "std_interval": 10.1,
+        "overdue_score": 0.0,
+        "regularity": 0.09,
+        "smart_score": 0.402
+      },
+      {
+        "num": 31,
+        "count": 185,
+        "pct": 1.9,
+        "expected": 195.1,
+        "deviation": -10.1,
+        "last_draw_ago": 1,
+        "avg_interval": 10.6,
+        "std_interval": 9.3,
+        "overdue_score": 0.09,
+        "regularity": 0.097,
+        "smart_score": 0.435
+      },
+      {
+        "num": 36,
+        "count": 183,
+        "pct": 1.88,
+        "expected": 195.1,
+        "deviation": -12.1,
+        "last_draw_ago": 6,
+        "avg_interval": 10.7,
+        "std_interval": 9.2,
+        "overdue_score": 0.56,
+        "regularity": 0.098,
+        "smart_score": 0.596
+      },
+      {
+        "num": 47,
+        "count": 182,
+        "pct": 1.87,
+        "expected": 195.1,
+        "deviation": -13.1,
+        "last_draw_ago": 9,
+        "avg_interval": 10.7,
+        "std_interval": 11.5,
+        "overdue_score": 0.84,
+        "regularity": 0.08,
+        "smart_score": 0.687
+      },
+      {
+        "num": 2,
+        "count": 181,
+        "pct": 1.86,
+        "expected": 195.1,
+        "deviation": -14.1,
+        "last_draw_ago": 4,
+        "avg_interval": 10.7,
+        "std_interval": 10.1,
+        "overdue_score": 0.37,
+        "regularity": 0.09,
+        "smart_score": 0.523
+      },
+      {
+        "num": 41,
+        "count": 180,
+        "pct": 1.85,
+        "expected": 195.1,
+        "deviation": -15.1,
+        "last_draw_ago": 5,
+        "avg_interval": 10.9,
+        "std_interval": 9.9,
+        "overdue_score": 0.46,
+        "regularity": 0.092,
+        "smart_score": 0.553
+      },
+      {
+        "num": 43,
+        "count": 180,
+        "pct": 1.85,
+        "expected": 195.1,
+        "deviation": -15.1,
+        "last_draw_ago": 5,
+        "avg_interval": 10.8,
+        "std_interval": 11.6,
+        "overdue_score": 0.46,
+        "regularity": 0.079,
+        "smart_score": 0.55
+      },
+      {
+        "num": 32,
+        "count": 179,
+        "pct": 1.83,
+        "expected": 195.1,
+        "deviation": -16.1,
+        "last_draw_ago": 6,
+        "avg_interval": 10.9,
+        "std_interval": 9.8,
+        "overdue_score": 0.55,
+        "regularity": 0.092,
+        "smart_score": 0.582
+      },
+      {
+        "num": 40,
+        "count": 178,
+        "pct": 1.82,
+        "expected": 195.1,
+        "deviation": -17.1,
+        "last_draw_ago": 11,
+        "avg_interval": 10.9,
+        "std_interval": 9.4,
+        "overdue_score": 1.01,
+        "regularity": 0.096,
+        "smart_score": 0.742
+      },
+      {
+        "num": 18,
+        "count": 175,
+        "pct": 1.79,
+        "expected": 195.1,
+        "deviation": -20.1,
+        "last_draw_ago": 0,
+        "avg_interval": 11.2,
+        "std_interval": 10.5,
+        "overdue_score": 0.0,
+        "regularity": 0.087,
+        "smart_score": 0.381
+      },
+      {
+        "num": 46,
+        "count": 172,
+        "pct": 1.76,
+        "expected": 195.1,
+        "deviation": -23.1,
+        "last_draw_ago": 9,
+        "avg_interval": 11.1,
+        "std_interval": 10.6,
+        "overdue_score": 0.81,
+        "regularity": 0.086,
+        "smart_score": 0.658
+      },
+      {
+        "num": 33,
+        "count": 170,
+        "pct": 1.74,
+        "expected": 195.1,
+        "deviation": -25.1,
+        "last_draw_ago": 18,
+        "avg_interval": 11.4,
+        "std_interval": 9.6,
+        "overdue_score": 1.58,
+        "regularity": 0.095,
+        "smart_score": 0.925
+      },
+      {
+        "num": 22,
+        "count": 153,
+        "pct": 1.57,
+        "expected": 195.1,
+        "deviation": -42.1,
+        "last_draw_ago": 3,
+        "avg_interval": 12.6,
+        "std_interval": 11.7,
+        "overdue_score": 0.24,
+        "regularity": 0.079,
+        "smart_score": 0.417
+      }
+    ],
+    "hot": [
+      {
+        "num": 21,
+        "count": 212,
+        "pct": 2.17,
+        "expected": 195.1,
+        "deviation": 16.9,
+        "last_draw_ago": 37,
+        "avg_interval": 9.0,
+        "std_interval": 8.7,
+        "overdue_score": 3,
+        "regularity": 0.103,
+        "smart_score": 1.51
+      },
+      {
+        "num": 24,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.7,
+        "std_interval": 10.3,
+        "overdue_score": 2.68,
+        "regularity": 0.088,
+        "smart_score": 1.368
+      },
+      {
+        "num": 7,
+        "count": 198,
+        "pct": 2.03,
+        "expected": 195.1,
+        "deviation": 2.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.8,
+        "std_interval": 9.5,
+        "overdue_score": 2.66,
+        "regularity": 0.095,
+        "smart_score": 1.361
+      },
+      {
+        "num": 50,
+        "count": 209,
+        "pct": 2.14,
+        "expected": 195.1,
+        "deviation": 13.9,
+        "last_draw_ago": 24,
+        "avg_interval": 9.3,
+        "std_interval": 8.9,
+        "overdue_score": 2.59,
+        "regularity": 0.101,
+        "smart_score": 1.36
+      },
+      {
+        "num": 39,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 27,
+        "avg_interval": 10.1,
+        "std_interval": 9.7,
+        "overdue_score": 2.67,
+        "regularity": 0.094,
+        "smart_score": 1.35
+      },
+      {
+        "num": 15,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 25,
+        "avg_interval": 9.7,
+        "std_interval": 8.6,
+        "overdue_score": 2.58,
+        "regularity": 0.104,
+        "smart_score": 1.337
+      },
+      {
+        "num": 48,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 19,
+        "avg_interval": 10.0,
+        "std_interval": 10.1,
+        "overdue_score": 1.9,
+        "regularity": 0.09,
+        "smart_score": 1.079
+      },
+      {
+        "num": 27,
+        "count": 205,
+        "pct": 2.1,
+        "expected": 195.1,
+        "deviation": 9.9,
+        "last_draw_ago": 17,
+        "avg_interval": 9.4,
+        "std_interval": 9.5,
+        "overdue_score": 1.8,
+        "regularity": 0.095,
+        "smart_score": 1.074
+      },
+      {
+        "num": 44,
+        "count": 222,
+        "pct": 2.28,
+        "expected": 195.1,
+        "deviation": 26.9,
+        "last_draw_ago": 14,
+        "avg_interval": 8.7,
+        "std_interval": 7.7,
+        "overdue_score": 1.6,
+        "regularity": 0.115,
+        "smart_score": 1.044
+      },
+      {
+        "num": 49,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 16,
+        "avg_interval": 9.9,
+        "std_interval": 8.6,
+        "overdue_score": 1.61,
+        "regularity": 0.104,
+        "smart_score": 0.989
+      }
+    ],
+    "cold": [
+      {
+        "num": 22,
+        "count": 153,
+        "pct": 1.57,
+        "expected": 195.1,
+        "deviation": -42.1,
+        "last_draw_ago": 3,
+        "avg_interval": 12.6,
+        "std_interval": 11.7,
+        "overdue_score": 0.24,
+        "regularity": 0.079,
+        "smart_score": 0.417
+      },
+      {
+        "num": 33,
+        "count": 170,
+        "pct": 1.74,
+        "expected": 195.1,
+        "deviation": -25.1,
+        "last_draw_ago": 18,
+        "avg_interval": 11.4,
+        "std_interval": 9.6,
+        "overdue_score": 1.58,
+        "regularity": 0.095,
+        "smart_score": 0.925
+      },
+      {
+        "num": 46,
+        "count": 172,
+        "pct": 1.76,
+        "expected": 195.1,
+        "deviation": -23.1,
+        "last_draw_ago": 9,
+        "avg_interval": 11.1,
+        "std_interval": 10.6,
+        "overdue_score": 0.81,
+        "regularity": 0.086,
+        "smart_score": 0.658
+      },
+      {
+        "num": 18,
+        "count": 175,
+        "pct": 1.79,
+        "expected": 195.1,
+        "deviation": -20.1,
+        "last_draw_ago": 0,
+        "avg_interval": 11.2,
+        "std_interval": 10.5,
+        "overdue_score": 0.0,
+        "regularity": 0.087,
+        "smart_score": 0.381
+      },
+      {
+        "num": 40,
+        "count": 178,
+        "pct": 1.82,
+        "expected": 195.1,
+        "deviation": -17.1,
+        "last_draw_ago": 11,
+        "avg_interval": 10.9,
+        "std_interval": 9.4,
+        "overdue_score": 1.01,
+        "regularity": 0.096,
+        "smart_score": 0.742
+      },
+      {
+        "num": 32,
+        "count": 179,
+        "pct": 1.83,
+        "expected": 195.1,
+        "deviation": -16.1,
+        "last_draw_ago": 6,
+        "avg_interval": 10.9,
+        "std_interval": 9.8,
+        "overdue_score": 0.55,
+        "regularity": 0.092,
+        "smart_score": 0.582
+      },
+      {
+        "num": 41,
+        "count": 180,
+        "pct": 1.85,
+        "expected": 195.1,
+        "deviation": -15.1,
+        "last_draw_ago": 5,
+        "avg_interval": 10.9,
+        "std_interval": 9.9,
+        "overdue_score": 0.46,
+        "regularity": 0.092,
+        "smart_score": 0.553
+      },
+      {
+        "num": 43,
+        "count": 180,
+        "pct": 1.85,
+        "expected": 195.1,
+        "deviation": -15.1,
+        "last_draw_ago": 5,
+        "avg_interval": 10.8,
+        "std_interval": 11.6,
+        "overdue_score": 0.46,
+        "regularity": 0.079,
+        "smart_score": 0.55
+      },
+      {
+        "num": 2,
+        "count": 181,
+        "pct": 1.86,
+        "expected": 195.1,
+        "deviation": -14.1,
+        "last_draw_ago": 4,
+        "avg_interval": 10.7,
+        "std_interval": 10.1,
+        "overdue_score": 0.37,
+        "regularity": 0.09,
+        "smart_score": 0.523
+      },
+      {
+        "num": 47,
+        "count": 182,
+        "pct": 1.87,
+        "expected": 195.1,
+        "deviation": -13.1,
+        "last_draw_ago": 9,
+        "avg_interval": 10.7,
+        "std_interval": 11.5,
+        "overdue_score": 0.84,
+        "regularity": 0.08,
+        "smart_score": 0.687
+      }
+    ],
+    "overdue": [
+      {
+        "num": 21,
+        "count": 212,
+        "pct": 2.17,
+        "expected": 195.1,
+        "deviation": 16.9,
+        "last_draw_ago": 37,
+        "avg_interval": 9.0,
+        "std_interval": 8.7,
+        "overdue_score": 3,
+        "regularity": 0.103,
+        "smart_score": 1.51
+      },
+      {
+        "num": 39,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 27,
+        "avg_interval": 10.1,
+        "std_interval": 9.7,
+        "overdue_score": 2.67,
+        "regularity": 0.094,
+        "smart_score": 1.35
+      },
+      {
+        "num": 24,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.7,
+        "std_interval": 10.3,
+        "overdue_score": 2.68,
+        "regularity": 0.088,
+        "smart_score": 1.368
+      },
+      {
+        "num": 7,
+        "count": 198,
+        "pct": 2.03,
+        "expected": 195.1,
+        "deviation": 2.9,
+        "last_draw_ago": 26,
+        "avg_interval": 9.8,
+        "std_interval": 9.5,
+        "overdue_score": 2.66,
+        "regularity": 0.095,
+        "smart_score": 1.361
+      },
+      {
+        "num": 15,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 25,
+        "avg_interval": 9.7,
+        "std_interval": 8.6,
+        "overdue_score": 2.58,
+        "regularity": 0.104,
+        "smart_score": 1.337
+      },
+      {
+        "num": 50,
+        "count": 209,
+        "pct": 2.14,
+        "expected": 195.1,
+        "deviation": 13.9,
+        "last_draw_ago": 24,
+        "avg_interval": 9.3,
+        "std_interval": 8.9,
+        "overdue_score": 2.59,
+        "regularity": 0.101,
+        "smart_score": 1.36
+      },
+      {
+        "num": 48,
+        "count": 191,
+        "pct": 1.96,
+        "expected": 195.1,
+        "deviation": -4.1,
+        "last_draw_ago": 19,
+        "avg_interval": 10.0,
+        "std_interval": 10.1,
+        "overdue_score": 1.9,
+        "regularity": 0.09,
+        "smart_score": 1.079
+      },
+      {
+        "num": 33,
+        "count": 170,
+        "pct": 1.74,
+        "expected": 195.1,
+        "deviation": -25.1,
+        "last_draw_ago": 18,
+        "avg_interval": 11.4,
+        "std_interval": 9.6,
+        "overdue_score": 1.58,
+        "regularity": 0.095,
+        "smart_score": 0.925
+      },
+      {
+        "num": 27,
+        "count": 205,
+        "pct": 2.1,
+        "expected": 195.1,
+        "deviation": 9.9,
+        "last_draw_ago": 17,
+        "avg_interval": 9.4,
+        "std_interval": 9.5,
+        "overdue_score": 1.8,
+        "regularity": 0.095,
+        "smart_score": 1.074
+      },
+      {
+        "num": 49,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 16,
+        "avg_interval": 9.9,
+        "std_interval": 8.6,
+        "overdue_score": 1.61,
+        "regularity": 0.104,
+        "smart_score": 0.989
+      }
+    ],
+    "regular": [
+      {
+        "num": 29,
+        "count": 216,
+        "pct": 2.21,
+        "expected": 195.1,
+        "deviation": 20.9,
+        "last_draw_ago": 10,
+        "avg_interval": 9.0,
+        "std_interval": 7.4,
+        "overdue_score": 1.11,
+        "regularity": 0.12,
+        "smart_score": 0.861
+      },
+      {
+        "num": 44,
+        "count": 222,
+        "pct": 2.28,
+        "expected": 195.1,
+        "deviation": 26.9,
+        "last_draw_ago": 14,
+        "avg_interval": 8.7,
+        "std_interval": 7.7,
+        "overdue_score": 1.6,
+        "regularity": 0.115,
+        "smart_score": 1.044
+      },
+      {
+        "num": 17,
+        "count": 213,
+        "pct": 2.18,
+        "expected": 195.1,
+        "deviation": 17.9,
+        "last_draw_ago": 0,
+        "avg_interval": 8.9,
+        "std_interval": 7.7,
+        "overdue_score": 0.0,
+        "regularity": 0.114,
+        "smart_score": 0.465
+      },
+      {
+        "num": 37,
+        "count": 208,
+        "pct": 2.13,
+        "expected": 195.1,
+        "deviation": 12.9,
+        "last_draw_ago": 2,
+        "avg_interval": 9.4,
+        "std_interval": 8.1,
+        "overdue_score": 0.21,
+        "regularity": 0.11,
+        "smart_score": 0.527
+      },
+      {
+        "num": 19,
+        "count": 217,
+        "pct": 2.22,
+        "expected": 195.1,
+        "deviation": 21.9,
+        "last_draw_ago": 7,
+        "avg_interval": 9.0,
+        "std_interval": 8.1,
+        "overdue_score": 0.78,
+        "regularity": 0.109,
+        "smart_score": 0.745
+      },
+      {
+        "num": 38,
+        "count": 199,
+        "pct": 2.04,
+        "expected": 195.1,
+        "deviation": 3.9,
+        "last_draw_ago": 4,
+        "avg_interval": 9.8,
+        "std_interval": 8.2,
+        "overdue_score": 0.41,
+        "regularity": 0.109,
+        "smart_score": 0.579
+      },
+      {
+        "num": 42,
+        "count": 221,
+        "pct": 2.27,
+        "expected": 195.1,
+        "deviation": 25.9,
+        "last_draw_ago": 0,
+        "avg_interval": 8.8,
+        "std_interval": 8.4,
+        "overdue_score": 0.0,
+        "regularity": 0.106,
+        "smart_score": 0.48
+      },
+      {
+        "num": 23,
+        "count": 219,
+        "pct": 2.25,
+        "expected": 195.1,
+        "deviation": 23.9,
+        "last_draw_ago": 2,
+        "avg_interval": 8.9,
+        "std_interval": 8.5,
+        "overdue_score": 0.22,
+        "regularity": 0.106,
+        "smart_score": 0.553
+      },
+      {
+        "num": 12,
+        "count": 195,
+        "pct": 2.0,
+        "expected": 195.1,
+        "deviation": -0.1,
+        "last_draw_ago": 4,
+        "avg_interval": 10.0,
+        "std_interval": 8.5,
+        "overdue_score": 0.4,
+        "regularity": 0.106,
+        "smart_score": 0.566
+      },
+      {
+        "num": 10,
+        "count": 212,
+        "pct": 2.17,
+        "expected": 195.1,
+        "deviation": 16.9,
+        "last_draw_ago": 5,
+        "avg_interval": 9.2,
+        "std_interval": 8.6,
+        "overdue_score": 0.54,
+        "regularity": 0.104,
+        "smart_score": 0.65
+      }
+    ],
+    "expected_per_number": 195.1
+  },
+  "stars": {
+    "frequencies": [
+      {
+        "num": 2,
+        "count": 386,
+        "pct": 9.89,
+        "expected": 325.2,
+        "deviation": 60.8,
+        "last_draw_ago": 1,
+        "avg_interval": 5.1,
+        "std_interval": 4.5,
+        "overdue_score": 0.2,
+        "regularity": 0.183,
+        "smart_score": 0.591
+      },
+      {
+        "num": 3,
+        "count": 384,
+        "pct": 9.84,
+        "expected": 325.2,
+        "deviation": 58.8,
+        "last_draw_ago": 12,
+        "avg_interval": 5.0,
+        "std_interval": 4.2,
+        "overdue_score": 2.38,
+        "regularity": 0.191,
+        "smart_score": 1.353
+      },
+      {
+        "num": 8,
+        "count": 372,
+        "pct": 9.53,
+        "expected": 325.2,
+        "deviation": 46.8,
+        "last_draw_ago": 3,
+        "avg_interval": 5.2,
+        "std_interval": 4.8,
+        "overdue_score": 0.57,
+        "regularity": 0.173,
+        "smart_score": 0.7
+      },
+      {
+        "num": 9,
+        "count": 360,
+        "pct": 9.23,
+        "expected": 325.2,
+        "deviation": 34.8,
+        "last_draw_ago": 0,
+        "avg_interval": 5.4,
+        "std_interval": 4.5,
+        "overdue_score": 0.0,
+        "regularity": 0.18,
+        "smart_score": 0.488
+      },
+      {
+        "num": 6,
+        "count": 351,
+        "pct": 9.0,
+        "expected": 325.2,
+        "deviation": 25.8,
+        "last_draw_ago": 2,
+        "avg_interval": 5.5,
+        "std_interval": 4.7,
+        "overdue_score": 0.36,
+        "regularity": 0.175,
+        "smart_score": 0.602
+      },
+      {
+        "num": 5,
+        "count": 348,
+        "pct": 8.92,
+        "expected": 325.2,
+        "deviation": 22.8,
+        "last_draw_ago": 3,
+        "avg_interval": 5.6,
+        "std_interval": 5.2,
+        "overdue_score": 0.53,
+        "regularity": 0.16,
+        "smart_score": 0.654
+      },
+      {
+        "num": 7,
+        "count": 346,
+        "pct": 8.87,
+        "expected": 325.2,
+        "deviation": 20.8,
+        "last_draw_ago": 0,
+        "avg_interval": 5.7,
+        "std_interval": 4.9,
+        "overdue_score": 0.0,
+        "regularity": 0.168,
+        "smart_score": 0.468
+      },
+      {
+        "num": 1,
+        "count": 334,
+        "pct": 8.56,
+        "expected": 325.2,
+        "deviation": 8.8,
+        "last_draw_ago": 9,
+        "avg_interval": 5.8,
+        "std_interval": 5.5,
+        "overdue_score": 1.55,
+        "regularity": 0.154,
+        "smart_score": 0.992
+      },
+      {
+        "num": 4,
+        "count": 307,
+        "pct": 7.87,
+        "expected": 325.2,
+        "deviation": -18.2,
+        "last_draw_ago": 12,
+        "avg_interval": 6.3,
+        "std_interval": 6.3,
+        "overdue_score": 1.9,
+        "regularity": 0.137,
+        "smart_score": 1.077
+      },
+      {
+        "num": 10,
+        "count": 278,
+        "pct": 7.12,
+        "expected": 325.2,
+        "deviation": -47.2,
+        "last_draw_ago": 17,
+        "avg_interval": 5.6,
+        "std_interval": 5.1,
+        "overdue_score": 3,
+        "regularity": 0.164,
+        "smart_score": 1.433
+      },
+      {
+        "num": 11,
+        "count": 263,
+        "pct": 6.74,
+        "expected": 325.2,
+        "deviation": -62.2,
+        "last_draw_ago": 7,
+        "avg_interval": 6.0,
+        "std_interval": 5.2,
+        "overdue_score": 1.17,
+        "regularity": 0.161,
+        "smart_score": 0.773
+      },
+      {
+        "num": 12,
+        "count": 173,
+        "pct": 4.43,
+        "expected": 325.2,
+        "deviation": -152.2,
+        "last_draw_ago": 1,
+        "avg_interval": 5.9,
+        "std_interval": 5.2,
+        "overdue_score": 0.17,
+        "regularity": 0.161,
+        "smart_score": 0.313
+      }
+    ],
+    "hot": [
+      {
+        "num": 10,
+        "count": 278,
+        "pct": 7.12,
+        "expected": 325.2,
+        "deviation": -47.2,
+        "last_draw_ago": 17,
+        "avg_interval": 5.6,
+        "std_interval": 5.1,
+        "overdue_score": 3,
+        "regularity": 0.164,
+        "smart_score": 1.433
+      },
+      {
+        "num": 3,
+        "count": 384,
+        "pct": 9.84,
+        "expected": 325.2,
+        "deviation": 58.8,
+        "last_draw_ago": 12,
+        "avg_interval": 5.0,
+        "std_interval": 4.2,
+        "overdue_score": 2.38,
+        "regularity": 0.191,
+        "smart_score": 1.353
+      },
+      {
+        "num": 4,
+        "count": 307,
+        "pct": 7.87,
+        "expected": 325.2,
+        "deviation": -18.2,
+        "last_draw_ago": 12,
+        "avg_interval": 6.3,
+        "std_interval": 6.3,
+        "overdue_score": 1.9,
+        "regularity": 0.137,
+        "smart_score": 1.077
+      },
+      {
+        "num": 1,
+        "count": 334,
+        "pct": 8.56,
+        "expected": 325.2,
+        "deviation": 8.8,
+        "last_draw_ago": 9,
+        "avg_interval": 5.8,
+        "std_interval": 5.5,
+        "overdue_score": 1.55,
+        "regularity": 0.154,
+        "smart_score": 0.992
+      },
+      {
+        "num": 11,
+        "count": 263,
+        "pct": 6.74,
+        "expected": 325.2,
+        "deviation": -62.2,
+        "last_draw_ago": 7,
+        "avg_interval": 6.0,
+        "std_interval": 5.2,
+        "overdue_score": 1.17,
+        "regularity": 0.161,
+        "smart_score": 0.773
+      }
+    ],
+    "cold": [
+      {
+        "num": 12,
+        "count": 173,
+        "pct": 4.43,
+        "expected": 325.2,
+        "deviation": -152.2,
+        "last_draw_ago": 1,
+        "avg_interval": 5.9,
+        "std_interval": 5.2,
+        "overdue_score": 0.17,
+        "regularity": 0.161,
+        "smart_score": 0.313
+      },
+      {
+        "num": 11,
+        "count": 263,
+        "pct": 6.74,
+        "expected": 325.2,
+        "deviation": -62.2,
+        "last_draw_ago": 7,
+        "avg_interval": 6.0,
+        "std_interval": 5.2,
+        "overdue_score": 1.17,
+        "regularity": 0.161,
+        "smart_score": 0.773
+      },
+      {
+        "num": 10,
+        "count": 278,
+        "pct": 7.12,
+        "expected": 325.2,
+        "deviation": -47.2,
+        "last_draw_ago": 17,
+        "avg_interval": 5.6,
+        "std_interval": 5.1,
+        "overdue_score": 3,
+        "regularity": 0.164,
+        "smart_score": 1.433
+      },
+      {
+        "num": 4,
+        "count": 307,
+        "pct": 7.87,
+        "expected": 325.2,
+        "deviation": -18.2,
+        "last_draw_ago": 12,
+        "avg_interval": 6.3,
+        "std_interval": 6.3,
+        "overdue_score": 1.9,
+        "regularity": 0.137,
+        "smart_score": 1.077
+      },
+      {
+        "num": 1,
+        "count": 334,
+        "pct": 8.56,
+        "expected": 325.2,
+        "deviation": 8.8,
+        "last_draw_ago": 9,
+        "avg_interval": 5.8,
+        "std_interval": 5.5,
+        "overdue_score": 1.55,
+        "regularity": 0.154,
+        "smart_score": 0.992
+      }
+    ],
+    "overdue": [
+      {
+        "num": 10,
+        "count": 278,
+        "pct": 7.12,
+        "expected": 325.2,
+        "deviation": -47.2,
+        "last_draw_ago": 17,
+        "avg_interval": 5.6,
+        "std_interval": 5.1,
+        "overdue_score": 3,
+        "regularity": 0.164,
+        "smart_score": 1.433
+      },
+      {
+        "num": 3,
+        "count": 384,
+        "pct": 9.84,
+        "expected": 325.2,
+        "deviation": 58.8,
+        "last_draw_ago": 12,
+        "avg_interval": 5.0,
+        "std_interval": 4.2,
+        "overdue_score": 2.38,
+        "regularity": 0.191,
+        "smart_score": 1.353
+      },
+      {
+        "num": 4,
+        "count": 307,
+        "pct": 7.87,
+        "expected": 325.2,
+        "deviation": -18.2,
+        "last_draw_ago": 12,
+        "avg_interval": 6.3,
+        "std_interval": 6.3,
+        "overdue_score": 1.9,
+        "regularity": 0.137,
+        "smart_score": 1.077
+      },
+      {
+        "num": 1,
+        "count": 334,
+        "pct": 8.56,
+        "expected": 325.2,
+        "deviation": 8.8,
+        "last_draw_ago": 9,
+        "avg_interval": 5.8,
+        "std_interval": 5.5,
+        "overdue_score": 1.55,
+        "regularity": 0.154,
+        "smart_score": 0.992
+      },
+      {
+        "num": 11,
+        "count": 263,
+        "pct": 6.74,
+        "expected": 325.2,
+        "deviation": -62.2,
+        "last_draw_ago": 7,
+        "avg_interval": 6.0,
+        "std_interval": 5.2,
+        "overdue_score": 1.17,
+        "regularity": 0.161,
+        "smart_score": 0.773
+      }
+    ],
+    "regular": [
+      {
+        "num": 3,
+        "count": 384,
+        "pct": 9.84,
+        "expected": 325.2,
+        "deviation": 58.8,
+        "last_draw_ago": 12,
+        "avg_interval": 5.0,
+        "std_interval": 4.2,
+        "overdue_score": 2.38,
+        "regularity": 0.191,
+        "smart_score": 1.353
+      },
+      {
+        "num": 2,
+        "count": 386,
+        "pct": 9.89,
+        "expected": 325.2,
+        "deviation": 60.8,
+        "last_draw_ago": 1,
+        "avg_interval": 5.1,
+        "std_interval": 4.5,
+        "overdue_score": 0.2,
+        "regularity": 0.183,
+        "smart_score": 0.591
+      },
+      {
+        "num": 9,
+        "count": 360,
+        "pct": 9.23,
+        "expected": 325.2,
+        "deviation": 34.8,
+        "last_draw_ago": 0,
+        "avg_interval": 5.4,
+        "std_interval": 4.5,
+        "overdue_score": 0.0,
+        "regularity": 0.18,
+        "smart_score": 0.488
+      },
+      {
+        "num": 6,
+        "count": 351,
+        "pct": 9.0,
+        "expected": 325.2,
+        "deviation": 25.8,
+        "last_draw_ago": 2,
+        "avg_interval": 5.5,
+        "std_interval": 4.7,
+        "overdue_score": 0.36,
+        "regularity": 0.175,
+        "smart_score": 0.602
+      },
+      {
+        "num": 8,
+        "count": 372,
+        "pct": 9.53,
+        "expected": 325.2,
+        "deviation": 46.8,
+        "last_draw_ago": 3,
+        "avg_interval": 5.2,
+        "std_interval": 4.8,
+        "overdue_score": 0.57,
+        "regularity": 0.173,
+        "smart_score": 0.7
+      }
+    ],
+    "expected_per_number": 325.2
+  },
+  "recent_100": {
+    "draws": 100,
+    "balls": [
+      {
+        "num": 13,
+        "count": 17
+      },
+      {
+        "num": 42,
+        "count": 17
+      },
+      {
+        "num": 5,
+        "count": 15
+      },
+      {
+        "num": 8,
+        "count": 15
+      },
+      {
+        "num": 17,
+        "count": 15
+      },
+      {
+        "num": 41,
+        "count": 15
+      },
+      {
+        "num": 6,
+        "count": 14
+      },
+      {
+        "num": 24,
+        "count": 14
+      },
+      {
+        "num": 44,
+        "count": 14
+      },
+      {
+        "num": 29,
+        "count": 13
+      },
+      {
+        "num": 4,
+        "count": 12
+      },
+      {
+        "num": 10,
+        "count": 12
+      },
+      {
+        "num": 14,
+        "count": 12
+      },
+      {
+        "num": 26,
+        "count": 12
+      },
+      {
+        "num": 45,
+        "count": 12
+      }
+    ],
+    "stars": [
+      {
+        "num": 10,
+        "count": 23
+      },
+      {
+        "num": 2,
+        "count": 21
+      },
+      {
+        "num": 5,
+        "count": 21
+      },
+      {
+        "num": 6,
+        "count": 19
+      },
+      {
+        "num": 9,
+        "count": 18
+      },
+      {
+        "num": 8,
+        "count": 17
+      }
+    ]
+  },
+  "momentum": {
+    "balls": [
+      {
+        "num": 45,
+        "delta": -8
+      },
+      {
+        "num": 10,
+        "delta": 6
+      },
+      {
+        "num": 26,
+        "delta": 6
+      },
+      {
+        "num": 8,
+        "delta": -5
+      },
+      {
+        "num": 27,
+        "delta": 5
+      },
+      {
+        "num": 37,
+        "delta": 5
+      },
+      {
+        "num": 39,
+        "delta": -5
+      },
+      {
+        "num": 9,
+        "delta": -4
+      },
+      {
+        "num": 14,
+        "delta": 4
+      },
+      {
+        "num": 24,
+        "delta": -4
+      },
+      {
+        "num": 25,
+        "delta": -4
+      },
+      {
+        "num": 44,
+        "delta": 4
+      },
+      {
+        "num": 48,
+        "delta": -4
+      },
+      {
+        "num": 13,
+        "delta": -3
+      },
+      {
+        "num": 15,
+        "delta": -3
+      }
+    ],
+    "stars": [
+      {
+        "num": 4,
+        "delta": 4
+      },
+      {
+        "num": 2,
+        "delta": -3
+      },
+      {
+        "num": 8,
+        "delta": -3
+      },
+      {
+        "num": 7,
+        "delta": -2
+      },
+      {
+        "num": 9,
+        "delta": 2
+      },
+      {
+        "num": 12,
+        "delta": -2
+      }
+    ],
+    "explanation": "Delta = différence entre les 50 derniers et les 50 précédents"
+  },
+  "pairs": [
+    {
+      "balls": [
+        15,
+        28
+      ],
+      "count": 28,
+      "strength": 1.44
+    },
+    {
+      "balls": [
+        4,
+        23
+      ],
+      "count": 28,
+      "strength": 1.44
+    },
+    {
+      "balls": [
+        23,
+        24
+      ],
+      "count": 28,
+      "strength": 1.44
+    },
+    {
+      "balls": [
+        23,
+        37
+      ],
+      "count": 28,
+      "strength": 1.44
+    },
+    {
+      "balls": [
+        39,
+        44
+      ],
+      "count": 28,
+      "strength": 1.44
+    },
+    {
+      "balls": [
+        19,
+        37
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        24,
+        26
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        1,
+        48
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        17,
+        35
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        17,
+        45
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        23,
+        32
+      ],
+      "count": 27,
+      "strength": 1.38
+    },
+    {
+      "balls": [
+        10,
+        45
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        35,
+        44
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        13,
+        42
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        12,
+        44
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        6,
+        9
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        5,
+        25
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        11,
+        13
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        11,
+        29
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        35,
+        42
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        44,
+        50
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        19,
+        45
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        17,
+        28
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        16,
+        18
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        23,
+        44
+      ],
+      "count": 26,
+      "strength": 1.33
+    },
+    {
+      "balls": [
+        15,
+        44
+      ],
+      "count": 25,
+      "strength": 1.28
+    },
+    {
+      "balls": [
+        12,
+        19
+      ],
+      "count": 25,
+      "strength": 1.28
+    },
+    {
+      "balls": [
+        7,
+        34
+      ],
+      "count": 25,
+      "strength": 1.28
+    },
+    {
+      "balls": [
+        15,
+        42
+      ],
+      "count": 25,
+      "strength": 1.28
+    },
+    {
+      "balls": [
+        3,
+        50
+      ],
+      "count": 25,
+      "strength": 1.28
+    }
+  ],
+  "consecutive_pairs": [
+    {
+      "pair": [
+        23,
+        24
+      ],
+      "count": 28
+    },
+    {
+      "pair": [
+        36,
+        37
+      ],
+      "count": 21
+    },
+    {
+      "pair": [
+        20,
+        21
+      ],
+      "count": 21
+    },
+    {
+      "pair": [
+        13,
+        14
+      ],
+      "count": 21
+    },
+    {
+      "pair": [
+        15,
+        16
+      ],
+      "count": 20
+    },
+    {
+      "pair": [
+        17,
+        18
+      ],
+      "count": 20
+    },
+    {
+      "pair": [
+        25,
+        26
+      ],
+      "count": 19
+    },
+    {
+      "pair": [
+        28,
+        29
+      ],
+      "count": 19
+    },
+    {
+      "pair": [
+        3,
+        4
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        43,
+        44
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        4,
+        5
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        19,
+        20
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        29,
+        30
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        16,
+        17
+      ],
+      "count": 18
+    },
+    {
+      "pair": [
+        34,
+        35
+      ],
+      "count": 17
+    }
+  ],
+  "triplets": [
+    {
+      "triplet": [
+        36,
+        37,
+        42
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        10,
+        19,
+        23
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        23,
+        24,
+        26
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        23,
+        35,
+        37
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        3,
+        13,
+        42
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        19,
+        25,
+        44
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        6,
+        24,
+        50
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        13,
+        17,
+        21
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        25,
+        39,
+        44
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        28,
+        29,
+        48
+      ],
+      "count": 6
+    },
+    {
+      "triplet": [
+        3,
+        4,
+        43
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        10,
+        45,
+        49
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        6,
+        11,
+        44
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        23,
+        24,
+        34
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        2,
+        12,
+        19
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        15,
+        35,
+        44
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        20,
+        21,
+        45
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        1,
+        11,
+        42
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        14,
+        19,
+        29
+      ],
+      "count": 5
+    },
+    {
+      "triplet": [
+        11,
+        24,
+        29
+      ],
+      "count": 5
+    }
+  ],
+  "patterns": {
+    "avg_sum_balls": 127.5,
+    "min_sum": 42,
+    "max_sum": 222,
+    "sum_distribution": {
+      "130": 251,
+      "140": 244,
+      "120": 243,
+      "110": 225,
+      "100": 179,
+      "150": 175,
+      "90": 142,
+      "160": 125,
+      "80": 109,
+      "170": 74,
+      "70": 62,
+      "180": 42,
+      "60": 27,
+      "190": 25,
+      "50": 15,
+      "200": 5,
+      "40": 5,
+      "210": 2,
+      "220": 1
+    },
+    "avg_gap": 8.5,
+    "parity_distribution": {
+      "0": 51,
+      "1": 287,
+      "2": 679,
+      "3": 603,
+      "4": 288,
+      "5": 43
+    },
+    "high_low_distribution": {
+      "0": 41,
+      "1": 281,
+      "2": 642,
+      "3": 658,
+      "4": 284,
+      "5": 45
+    },
+    "decade_stats": {
+      "1-10": {
+        "count": 1926,
+        "pct": 19.7
+      },
+      "11-20": {
+        "count": 1987,
+        "pct": 20.4
+      },
+      "21-30": {
+        "count": 1994,
+        "pct": 20.4
+      },
+      "31-40": {
+        "count": 1893,
+        "pct": 19.4
+      },
+      "41-50": {
+        "count": 1955,
+        "pct": 20.0
+      }
+    }
+  },
+  "weekday_analysis": {
+    "Mardi": {
+      "count": 787,
+      "top_balls": [
+        {
+          "num": 44,
+          "count": 98
+        },
+        {
+          "num": 20,
+          "count": 95
+        },
+        {
+          "num": 42,
+          "count": 95
+        },
+        {
+          "num": 25,
+          "count": 92
+        },
+        {
+          "num": 27,
+          "count": 89
+        }
+      ],
+      "top_stars": [
+        {
+          "num": 2,
+          "count": 167
+        },
+        {
+          "num": 8,
+          "count": 152
+        }
+      ]
+    },
+    "Vendredi": {
+      "count": 1164,
+      "top_balls": [
+        {
+          "num": 50,
+          "count": 139
+        },
+        {
+          "num": 23,
+          "count": 134
+        },
+        {
+          "num": 19,
+          "count": 130
+        },
+        {
+          "num": 21,
+          "count": 130
+        },
+        {
+          "num": 37,
+          "count": 129
+        }
+      ],
+      "top_stars": [
+        {
+          "num": 3,
+          "count": 248
+        },
+        {
+          "num": 9,
+          "count": 227
+        }
+      ]
+    }
+  },
+  "history": [
+    {
+      "id": "26044",
+      "date": "2026-06-02",
+      "balls": [
+        6,
+        9,
+        17,
+        18,
+        42
+      ],
+      "stars": [
+        7,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26043",
+      "date": "2026-05-29",
+      "balls": [
+        5,
+        14,
+        18,
+        31,
+        35
+      ],
+      "stars": [
+        2,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26042",
+      "date": "2026-05-26",
+      "balls": [
+        6,
+        23,
+        25,
+        35,
+        37
+      ],
+      "stars": [
+        6,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26041",
+      "date": "2026-05-22",
+      "balls": [
+        6,
+        22,
+        26,
+        31,
+        37
+      ],
+      "stars": [
+        5,
+        8
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26040",
+      "date": "2026-05-19",
+      "balls": [
+        2,
+        12,
+        20,
+        38,
+        45
+      ],
+      "stars": [
+        2,
+        5
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26039",
+      "date": "2026-05-15",
+      "balls": [
+        3,
+        10,
+        38,
+        41,
+        43
+      ],
+      "stars": [
+        2,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26038",
+      "date": "2026-05-12",
+      "balls": [
+        4,
+        26,
+        32,
+        35,
+        36
+      ],
+      "stars": [
+        5,
+        7
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26037",
+      "date": "2026-05-08",
+      "balls": [
+        2,
+        17,
+        19,
+        34,
+        37
+      ],
+      "stars": [
+        8,
+        11
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26036",
+      "date": "2026-05-05",
+      "balls": [
+        3,
+        4,
+        8,
+        20,
+        31
+      ],
+      "stars": [
+        6,
+        8
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26035",
+      "date": "2026-05-01",
+      "balls": [
+        3,
+        9,
+        42,
+        46,
+        47
+      ],
+      "stars": [
+        1,
+        11
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26034",
+      "date": "2026-04-28",
+      "balls": [
+        26,
+        29,
+        41,
+        46,
+        47
+      ],
+      "stars": [
+        8,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26033",
+      "date": "2026-04-24",
+      "balls": [
+        25,
+        26,
+        30,
+        40,
+        45
+      ],
+      "stars": [
+        1,
+        5
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26032",
+      "date": "2026-04-21",
+      "balls": [
+        13,
+        16,
+        29,
+        40,
+        47
+      ],
+      "stars": [
+        3,
+        4
+      ],
+      "jackpot": 48175066.0
+    },
+    {
+      "id": "26031",
+      "date": "2026-04-17",
+      "balls": [
+        22,
+        23,
+        28,
+        41,
+        47
+      ],
+      "stars": [
+        6,
+        8
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26030",
+      "date": "2026-04-14",
+      "balls": [
+        1,
+        2,
+        4,
+        28,
+        44
+      ],
+      "stars": [
+        5,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26029",
+      "date": "2026-04-10",
+      "balls": [
+        10,
+        13,
+        14,
+        38,
+        41
+      ],
+      "stars": [
+        6,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26028",
+      "date": "2026-04-07",
+      "balls": [
+        11,
+        14,
+        19,
+        36,
+        49
+      ],
+      "stars": [
+        6,
+        7
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26027",
+      "date": "2026-04-03",
+      "balls": [
+        8,
+        27,
+        29,
+        46,
+        49
+      ],
+      "stars": [
+        2,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26026",
+      "date": "2026-03-31",
+      "balls": [
+        5,
+        8,
+        10,
+        33,
+        38
+      ],
+      "stars": [
+        2,
+        7
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26025",
+      "date": "2026-03-27",
+      "balls": [
+        4,
+        10,
+        43,
+        44,
+        48
+      ],
+      "stars": [
+        2,
+        4
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26024",
+      "date": "2026-03-24",
+      "balls": [
+        12,
+        16,
+        17,
+        18,
+        27
+      ],
+      "stars": [
+        1,
+        3
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26023",
+      "date": "2026-03-20",
+      "balls": [
+        5,
+        12,
+        16,
+        37,
+        46
+      ],
+      "stars": [
+        8,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26022",
+      "date": "2026-03-17",
+      "balls": [
+        5,
+        17,
+        28,
+        33,
+        41
+      ],
+      "stars": [
+        3,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26021",
+      "date": "2026-03-13",
+      "balls": [
+        13,
+        17,
+        26,
+        41,
+        48
+      ],
+      "stars": [
+        4,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26020",
+      "date": "2026-03-10",
+      "balls": [
+        12,
+        14,
+        27,
+        44,
+        50
+      ],
+      "stars": [
+        4,
+        12
+      ],
+      "jackpot": 209527211.0
+    },
+    {
+      "id": "26019",
+      "date": "2026-03-06",
+      "balls": [
+        15,
+        16,
+        19,
+        28,
+        37
+      ],
+      "stars": [
+        6,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26018",
+      "date": "2026-03-03",
+      "balls": [
+        6,
+        7,
+        24,
+        34,
+        50
+      ],
+      "stars": [
+        5,
+        7
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26017",
+      "date": "2026-02-27",
+      "balls": [
+        14,
+        24,
+        27,
+        39,
+        42
+      ],
+      "stars": [
+        6,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26016",
+      "date": "2026-02-24",
+      "balls": [
+        10,
+        27,
+        40,
+        43,
+        47
+      ],
+      "stars": [
+        6,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26015",
+      "date": "2026-02-20",
+      "balls": [
+        13,
+        24,
+        28,
+        33,
+        35
+      ],
+      "stars": [
+        5,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26014",
+      "date": "2026-02-17",
+      "balls": [
+        1,
+        4,
+        6,
+        10,
+        41
+      ],
+      "stars": [
+        5,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26013",
+      "date": "2026-02-13",
+      "balls": [
+        9,
+        13,
+        31,
+        37,
+        40
+      ],
+      "stars": [
+        6,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26012",
+      "date": "2026-02-10",
+      "balls": [
+        1,
+        17,
+        19,
+        34,
+        42
+      ],
+      "stars": [
+        5,
+        8
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26011",
+      "date": "2026-02-06",
+      "balls": [
+        10,
+        13,
+        20,
+        23,
+        24
+      ],
+      "stars": [
+        6,
+        11
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26010",
+      "date": "2026-02-03",
+      "balls": [
+        26,
+        27,
+        28,
+        34,
+        37
+      ],
+      "stars": [
+        4,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26009",
+      "date": "2026-01-30",
+      "balls": [
+        14,
+        18,
+        31,
+        35,
+        46
+      ],
+      "stars": [
+        7,
+        11
+      ],
+      "jackpot": 123555827.0
+    },
+    {
+      "id": "26008",
+      "date": "2026-01-27",
+      "balls": [
+        4,
+        23,
+        42,
+        43,
+        47
+      ],
+      "stars": [
+        3,
+        9
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26007",
+      "date": "2026-01-23",
+      "balls": [
+        4,
+        5,
+        13,
+        21,
+        42
+      ],
+      "stars": [
+        3,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26006",
+      "date": "2026-01-20",
+      "balls": [
+        11,
+        18,
+        19,
+        22,
+        50
+      ],
+      "stars": [
+        1,
+        11
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26005",
+      "date": "2026-01-16",
+      "balls": [
+        5,
+        17,
+        24,
+        29,
+        50
+      ],
+      "stars": [
+        5,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26004",
+      "date": "2026-01-13",
+      "balls": [
+        6,
+        10,
+        18,
+        44,
+        47
+      ],
+      "stars": [
+        2,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26003",
+      "date": "2026-01-09",
+      "balls": [
+        1,
+        7,
+        10,
+        26,
+        34
+      ],
+      "stars": [
+        2,
+        4
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26002",
+      "date": "2026-01-06",
+      "balls": [
+        5,
+        14,
+        17,
+        18,
+        31
+      ],
+      "stars": [
+        10,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "26001",
+      "date": "2026-01-02",
+      "balls": [
+        8,
+        27,
+        42,
+        44,
+        46
+      ],
+      "stars": [
+        1,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "25104",
+      "date": "2025-12-30",
+      "balls": [
+        11,
+        26,
+        29,
+        34,
+        44
+      ],
+      "stars": [
+        1,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "25103",
+      "date": "2025-12-26",
+      "balls": [
+        12,
+        22,
+        32,
+        36,
+        48
+      ],
+      "stars": [
+        3,
+        4
+      ],
+      "jackpot": 54026007.0
+    },
+    {
+      "id": "25102",
+      "date": "2025-12-23",
+      "balls": [
+        8,
+        26,
+        27,
+        29,
+        44
+      ],
+      "stars": [
+        11,
+        12
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "25101",
+      "date": "2025-12-19",
+      "balls": [
+        17,
+        21,
+        39,
+        43,
+        44
+      ],
+      "stars": [
+        1,
+        11
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "25100",
+      "date": "2025-12-16",
+      "balls": [
+        14,
+        16,
+        40,
+        41,
+        44
+      ],
+      "stars": [
+        2,
+        10
+      ],
+      "jackpot": 0.0
+    },
+    {
+      "id": "25099",
+      "date": "2025-12-12",
+      "balls": [
+        7,
+        25,
+        30,
+        37,
+        41
+      ],
+      "stars": [
+        5,
+        11
+      ],
+      "jackpot": 17000000.0
+    }
+  ]
+}

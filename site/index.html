@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Euromillions — Analyse statistique</title>
+  <meta name="description" content="Analyse complète des tirages Euromillions : numéros chauds, froids, paires, tendances sur 1951 tirages.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-icon">€</div>
+        <div>
+          <h1>Euro Stats</h1>
+          <span>Analyse Euromillions</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#frequences">Fréquences</a>
+        <a href="#etoiles">Étoiles</a>
+        <a href="#paires">Patterns</a>
+        <a href="#momentum">Momentum</a>
+        <a href="#probabilites">Probabilités</a>
+        <a href="#historique">Historique</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app" class="loading">
+    <div class="container">
+      <section class="hero">
+        <h2 id="hero-title">Analyse Ultra-Avancée Euromillions</h2>
+        <p id="hero-desc"></p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="value" id="stat-draws">—</div>
+            <div class="label">Tirages analysés</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" id="stat-years">—</div>
+            <div class="label">Années de données</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" id="stat-expected-ball">—</div>
+            <div class="label">Sorties moyennes / boule</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" id="stat-expected-star">—</div>
+            <div class="label">Sorties moyennes / étoile</div>
+          </div>
+        </div>
+        <div class="last-draw" id="last-draw"></div>
+
+        <div class="prob-cta">
+          <button type="button" class="btn-prob" id="btn-generate-combos">
+            <span class="btn-prob-icon">🎲</span>
+            <span class="btn-prob-text">Générer 3 combinaisons possibles</span>
+          </button>
+          <p class="prob-cta-hint">Chaque clic propose 3 nouvelles grilles basées sur les probabilités</p>
+          <button type="button" class="btn-prob-secondary" id="btn-show-prob">Voir le détail des probabilités</button>
+        </div>
+
+        <div class="combo-results" id="combo-results" hidden>
+          <h3 class="combo-results-title">Vos 3 combinaisons</h3>
+          <div class="combo-cards" id="combo-cards"></div>
+        </div>
+      </section>
+
+      <div class="disclaimer">
+        <strong>Important :</strong> Chaque tirage est indépendant et aléatoire. Les statistiques passées
+        <strong>ne prédisent pas</strong> les résultats futurs. Ce site est un outil d'analyse historique à titre informatif uniquement.
+        Les « combinaisons suggérées » sont des regroupements statistiques, pas des conseils de jeu.
+      </div>
+
+      <!-- Panneau probabilités (modal) -->
+      <div class="prob-overlay" id="prob-overlay" hidden>
+        <div class="prob-modal" role="dialog" aria-labelledby="prob-modal-title">
+          <div class="prob-modal-header">
+            <div>
+              <h2 id="prob-modal-title">Probabilités du prochain tirage</h2>
+              <p class="prob-modal-sub">Classement basé sur l'historique de 1 951 tirages</p>
+            </div>
+            <button type="button" class="prob-close" id="btn-close-prob" aria-label="Fermer">×</button>
+          </div>
+
+          <div class="prob-summary" id="prob-summary"></div>
+
+          <div class="prob-mode-tabs">
+            <button type="button" class="prob-mode active" data-mode="combined">Score combiné</button>
+            <button type="button" class="prob-mode" data-mode="historical">Historique</button>
+            <button type="button" class="prob-mode" data-mode="theoretical">Théorique</button>
+          </div>
+
+          <div class="prob-picks" id="prob-picks"></div>
+
+          <h3 class="prob-section-title">Boules (1 – 50)</h3>
+          <p class="prob-legend-text">Plus la case est <span class="legend-hot">verte</span>, plus le numéro a souvent été tiré</p>
+          <div class="prob-grid" id="prob-grid-balls"></div>
+
+          <h3 class="prob-section-title">Étoiles (1 – 12)</h3>
+          <div class="prob-grid prob-grid-stars" id="prob-grid-stars"></div>
+
+          <p class="prob-footer-note">
+            Probabilité théorique : <strong>10 %</strong> par boule et <strong>16,7 %</strong> par étoile à chaque tirage.
+            Le score combiné mélange fréquence historique, tendance récente (200 tirages) et léger bonus « en retard ».
+          </p>
+        </div>
+      </div>
+
+      <section id="probabilites" class="prob-anchor"></section>
+
+      <section id="frequences">
+        <h2>Fréquences des boules (1–50) <span class="badge-pro">SMART</span></h2>
+        <p class="subtitle">Smart Score = Algorithme combinant fréquence (40%) + retard (35%) + régularité (25%). Chaque boule devrait sortir ~195 fois.</p>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="panel-hot">Chauds</button>
+          <button class="tab" data-tab="panel-cold">Froids</button>
+          <button class="tab" data-tab="panel-overdue">En retard</button>
+        </div>
+
+        <div class="cards-row">
+          <div class="card tab-panel active" id="panel-hot">
+            <h3><span class="badge hot">CHAUD</span> Top 10 — les plus sortis</h3>
+            <div id="hot-balls"></div>
+          </div>
+          <div class="card tab-panel" id="panel-cold">
+            <h3><span class="badge cold">FROID</span> Top 10 — les moins sortis</h3>
+            <div id="cold-balls"></div>
+          </div>
+          <div class="card tab-panel" id="panel-overdue">
+            <h3><span class="badge overdue">RETARD</span> Absents depuis longtemps</h3>
+            <div id="overdue-balls"></div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:1.5rem;font-size:1rem;">Graphique complet — 50 boules</h3>
+        <div id="chart-balls"></div>
+      </section>
+
+      <section id="etoiles">
+        <h2>Fréquences des étoiles (1–12)</h2>
+        <p class="subtitle">Probabilité théorique : 2/12 ≈ 16,7 % par étoile. Sortie moyenne attendue : ~325 fois sur l'historique.</p>
+        <div class="cards-row">
+          <div class="card">
+            <h3><span class="badge hot">CHAUD</span> Étoiles les plus fréquentes</h3>
+            <div id="hot-stars"></div>
+          </div>
+          <div class="card">
+            <h3><span class="badge cold">FROID</span> Étoiles les moins fréquentes</h3>
+            <div id="cold-stars"></div>
+          </div>
+        </div>
+        <h3 style="margin-top:1.5rem;font-size:1rem;">Graphique — 12 étoiles</h3>
+        <div id="chart-stars"></div>
+      </section>
+
+      <section id="recent">
+        <h2>Tendance récente (100 derniers tirages)</h2>
+        <p class="subtitle">Les numéros les plus actifs sur la période récente peuvent différer de l'historique complet.</p>
+        <div class="cards-row">
+          <div class="card">
+            <h3>Boules tendance</h3>
+            <div id="recent-balls"></div>
+          </div>
+          <div class="card">
+            <h3>Étoiles tendance</h3>
+            <div id="recent-stars"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="paires">
+        <h2>Paires & Triplets — Patterns avancés</h2>
+        <p class="subtitle">Combinaisons multi-numéros les plus fréquentes dans l'historique.</p>
+        
+        <div class="tabs">
+          <button class="tab active" data-tab="panel-pairs">Paires</button>
+          <button class="tab" data-tab="panel-triplets">Triplets</button>
+          <button class="tab" data-tab="panel-consecutive">Consécutifs</button>
+        </div>
+
+        <div class="card tab-panel active" id="panel-pairs">
+          <h3>Top 25 paires</h3>
+          <table>
+            <thead>
+              <tr><th>Rang</th><th>Paire</th><th>Occurrences</th><th>Force</th></tr>
+            </thead>
+            <tbody id="pairs-body"></tbody>
+          </table>
+        </div>
+
+        <div class="card tab-panel" id="panel-triplets">
+          <h3>Top 20 triplets (3 numéros ensemble)</h3>
+          <table>
+            <thead>
+              <tr><th>Rang</th><th>Triplet</th><th>Occurrences</th></tr>
+            </thead>
+            <tbody id="triplets-body"></tbody>
+          </table>
+        </div>
+
+        <div class="card tab-panel" id="panel-consecutive">
+          <h3>Numéros consécutifs fréquents</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem">Paires de numéros qui se suivent (ex: 23-24)</p>
+          <table>
+            <thead>
+              <tr><th>Rang</th><th>Consécutifs</th><th>Occurrences</th></tr>
+            </thead>
+            <tbody id="consecutive-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="momentum">
+        <h2>Momentum & Tendances</h2>
+        <p class="subtitle">Numéros en progression ou en déclin sur les 50 derniers tirages vs les 50 précédents.</p>
+        <div class="cards-row">
+          <div class="card">
+            <h3>Boules en hausse <span style="color:var(--hot)">▲</span></h3>
+            <div id="momentum-up-balls"></div>
+          </div>
+          <div class="card">
+            <h3>Boules en baisse <span style="color:var(--cold)">▼</span></h3>
+            <div id="momentum-down-balls"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="weekday">
+        <h2>Analyse par jour de tirage</h2>
+        <p class="subtitle">Numéros qui sortent le plus selon le jour de la semaine.</p>
+        <div id="weekday-cards" class="cards-row"></div>
+      </section>
+
+      <section id="patterns">
+        <h2>Modèles & répartition</h2>
+        <p class="subtitle">Somme des 5 boules, parité et jackpots remportés.</p>
+        <div class="pattern-grid">
+          <div class="pattern-item">
+            <div class="big" id="pattern-sum">—</div>
+            <div>Somme moyenne des 5 boules</div>
+          </div>
+          <div class="pattern-item">
+            <div class="big" id="pattern-min">—</div>
+            <div>Somme minimale observée</div>
+          </div>
+          <div class="pattern-item">
+            <div class="big" id="pattern-max">—</div>
+            <div>Somme maximale observée</div>
+          </div>
+          <div class="pattern-item">
+            <div class="big" id="pattern-gap">—</div>
+            <div>Écart moyen entre numéros</div>
+          </div>
+        </div>
+        <h3 style="margin:1.5rem 0 1rem;font-size:1rem;">Répartition pair / impair (sur 5 boules)</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem">Nombre de boules paires dans chaque tirage</p>
+        <div class="pattern-grid" id="even-dist"></div>
+      </section>
+
+      <section id="suggestions">
+        <h2>Combinaisons indicatives</h2>
+        <p class="subtitle">4 grilles construites à partir des statistiques — à ne pas considérer comme des prédictions.</p>
+        <div class="cards-row" id="suggestions-grid"></div>
+      </section>
+
+      <section id="historique">
+        <h2>50 derniers tirages</h2>
+        <p class="subtitle">Historique récent des résultats.</p>
+        <div class="history-grid" id="history-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Données FDJ · Analyse générée le <span id="generated-at">—</span></p>
+      <p style="margin-top:0.5rem">Jeu responsable — 18+ · Les probabilités de gagner le jackpot sont d'environ 1 sur 139 millions.</p>
+    </div>
+  </footer>
+
+  <script src="js/advanced.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

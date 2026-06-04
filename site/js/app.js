@@ -3,7 +3,7 @@ const THEO_BALL = 10;
 const THEO_STAR = 16.67;
 const GRID_PRICE = 2.5;
 let statsData = null;
-let probMode = "combined";
+let probMode = "pro";
 let lastCombos = null;
 let comboHistory = JSON.parse(localStorage.getItem("comboHistory") || "[]");
 let selectedBudget = 20;
@@ -48,8 +48,13 @@ function renderNumList(items, maxCount, type = "hot") {
     
     let infoText = `${item.count}× (${item.pct ?? Math.round((item.count / (maxCount || 1)) * 100)}%)`;
     
-    if (item.smart_score !== undefined) {
+    if (item.pro !== undefined) {
+      infoText += ` · PRO ${item.pro}`;
+    } else if (item.smart_score !== undefined) {
       infoText += ` · Smart ${Math.round(item.smart_score * 100)}`;
+    }
+    if (item.momentum_delta !== undefined && item.momentum_delta !== 0) {
+      infoText += ` · Mom ${item.momentum_delta > 0 ? "+" : ""}${item.momentum_delta}`;
     }
     if (item.regularity !== undefined && item.regularity > 0.1) {
       infoText += ` · Régulier`;
@@ -383,12 +388,16 @@ function setupTabs() {
 }
 
 function buildProbabilityScores(data) {
+  if (window.probEngine) {
+    return window.probEngine.buildProbabilityScores(data);
+  }
   return {
     balls: data.balls.frequencies.map((f) => ({
       num: f.num,
       theoretical: THEO_BALL,
       historical: f.pct,
-      combined: Math.round(f.smart_score * 100),
+      combined: Math.round((f.pro_score || f.smart_score / 2.5) * 100),
+      pro: Math.round((f.pro_score || 0) * 100),
       last_draw_ago: f.last_draw_ago,
       smart_score: f.smart_score,
       regularity: f.regularity,
@@ -400,7 +409,8 @@ function buildProbabilityScores(data) {
       num: f.num,
       theoretical: THEO_STAR,
       historical: f.pct,
-      combined: Math.round(f.smart_score * 100),
+      combined: Math.round((f.pro_score || f.smart_score / 2.5) * 100),
+      pro: Math.round((f.pro_score || 0) * 100),
       last_draw_ago: f.last_draw_ago,
       smart_score: f.smart_score,
       regularity: f.regularity,
@@ -408,12 +418,19 @@ function buildProbabilityScores(data) {
       count: f.count,
       expected: f.expected,
     })),
+    patterns: data.patterns || {},
+    pairs: data.pairs || [],
   };
 }
 
 function getPctForMode(item, mode) {
+  if (window.probEngine) {
+    return window.probEngine.getPctForMode(item, mode);
+  }
   if (mode === "theoretical") return item.theoretical;
   if (mode === "historical") return item.historical;
+  if (mode === "recent") return item.recent ?? 0;
+  if (mode === "pro") return item.pro ?? item.combined;
   return item.combined;
 }
 
@@ -437,12 +454,13 @@ function renderProbGrid(container, items, topNums, isStar = false) {
     const isTop = topNums.includes(item.num);
     const cell = el("div", {
       className: `prob-cell${isStar ? " star-cell" : ""}${isTop ? " top-pick" : ""}`,
-      title: `N°${item.num} — ${pct}${probMode === "combined" ? " pts" : "%"}${
+      title: `N°${item.num} — ${pct}${probMode === "theoretical" || probMode === "historical" || probMode === "recent" ? "%" : " pts"}${
         item.last_draw_ago ? ` — absent ${item.last_draw_ago} tirage(s)` : ""
-      }`,
+      }${item.pair_synergy ? ` — synergie ${Math.round(item.pair_synergy * 100)}%` : ""}`,
       style: `background:${heatColor(pct, maxPct, isStar)}`,
     });
-    const unit = probMode === "combined" ? "pts" : "%";
+    const isPct = probMode === "theoretical" || probMode === "historical" || probMode === "recent";
+    const unit = isPct ? "%" : "pts";
     cell.appendChild(el("span", { className: "num" }, [String(item.num)]));
     cell.appendChild(el("span", { className: "pct" }, [`${pct}${unit}`]));
     cell.appendChild(
@@ -451,7 +469,11 @@ function renderProbGrid(container, items, topNums, isStar = false) {
           ? "théorique"
           : probMode === "historical"
             ? "historique"
-            : "score",
+            : probMode === "recent"
+              ? "récent"
+              : probMode === "pro"
+                ? "PRO"
+                : "score",
       ])
     );
     container.appendChild(cell);
@@ -498,25 +520,58 @@ function comboKey(balls, stars) {
   return `${balls.join("-")}|${stars.join("-")}`;
 }
 
-function calcComboScore(balls, stars, ballMap, starMap) {
+function calcComboScore(balls, stars, ballMap, starMap, data) {
+  if (window.probEngine) {
+    return window.probEngine.calcComboScore(balls, stars, ballMap, starMap, data || statsData);
+  }
   const ballScores = balls.map((n) => ballMap[n]?.smart_score || ballMap[n]?.combined / 100 || 0);
   const starScores = stars.map((n) => starMap[n]?.smart_score || starMap[n]?.combined / 100 || 0);
-  
   const ballAvg = ballScores.reduce((a, b) => a + b, 0) / balls.length;
   const starAvg = starScores.reduce((a, b) => a + b, 0) / stars.length;
-  
-  const ballReg = balls.map((n) => ballMap[n]?.regularity || 0);
-  const avgReg = ballReg.reduce((a, b) => a + b, 0) / balls.length;
-  
-  return Math.round((ballAvg * 0.6 + starAvg * 0.3 + avgReg * 10 * 0.1) * 100) / 100;
+  return Math.round((ballAvg * 0.6 + starAvg * 0.3) * 100) / 100;
 }
 
 function generateCombinationsByCount(scores, count) {
+  if (window.probEngine && window.advancedCombos && statsData) {
+    const results = [];
+    const usedKeys = new Set();
+    const strats = window.advancedCombos.strategies;
+    let round = 0;
+
+    while (results.length < count && round < count * 4) {
+      const strat = strats[round % strats.length];
+      const combo = window.probEngine.generateOptimizedCombo(
+        scores,
+        statsData,
+        strat,
+        usedKeys,
+        20
+      );
+      combo.name = strat.name;
+      combo.title = strat.title;
+      combo.desc = strat.desc;
+      results.push(combo);
+      round++;
+    }
+
+    if (results.length < count) {
+      const extra = window.advancedCombos.generate(statsData);
+      for (const c of extra) {
+        if (results.length >= count) break;
+        const key = `${c.balls.join("-")}|${c.stars.join("-")}`;
+        if (!usedKeys.has(key)) {
+          usedKeys.add(key);
+          results.push(c);
+        }
+      }
+    }
+
+    return results.slice(0, count).sort((a, b) => b.score - a.score);
+  }
+
   if (window.advancedCombos && statsData) {
     const results = [];
     const usedKeys = new Set();
-    
-    // Générer les combinaisons en utilisant toutes les stratégies
     while (results.length < count) {
       const combos = window.advancedCombos.generate(statsData);
       for (const combo of combos) {
@@ -526,11 +581,8 @@ function generateCombinationsByCount(scores, count) {
           results.push(combo);
         }
       }
-      
-      // Protection contre boucle infinie
       if (results.length === 0 && usedKeys.size > count * 3) break;
     }
-    
     return results.slice(0, count);
   }
   
@@ -558,7 +610,7 @@ function generateCombinationsByCount(scores, count) {
     } while (usedKeys.has(key) && tries < 50);
     
     usedKeys.add(key);
-    const score = calcComboScore(balls, stars, ballMap, starMap);
+    const score = calcComboScore(balls, stars, ballMap, starMap, statsData);
     const ballSum = balls.reduce((a, b) => a + b, 0);
     const evenCount = balls.filter((b) => b % 2 === 0).length;
     const lowCount = balls.filter((b) => b <= 25).length;
@@ -597,16 +649,17 @@ function renderComboCard(combo, index, showActions = true) {
   card.appendChild(row);
   
   const scoreEl = el("div", { className: "combo-score" });
-  scoreEl.appendChild(document.createTextNode(`Score : ${combo.score} `));
+  scoreEl.appendChild(document.createTextNode(`Score PRO : ${combo.score} `));
   const hint = el("span");
-  hint.textContent = "(indice statistique intelligent)";
+  hint.textContent = "(optimisation multi-critères v2)";
   scoreEl.appendChild(hint);
   card.appendChild(scoreEl);
   
   if (combo.analysis) {
     const details = el("div", { className: "combo-details" });
     const spread = combo.analysis.spread || (Math.max(...combo.balls) - Math.min(...combo.balls));
-    details.innerHTML = `Somme: ${combo.analysis.sum} • ${combo.analysis.even}P/${5 - combo.analysis.even}I${combo.analysis.low ? ` • ${combo.analysis.low}B/${5 - combo.analysis.low}H` : ""} • Écart: ${spread}`;
+    const fit = combo.analysis.pattern_fit != null ? ` • Pattern ${combo.analysis.pattern_fit}%` : "";
+    details.innerHTML = `Somme: ${combo.analysis.sum} • ${combo.analysis.even}P/${5 - combo.analysis.even}I${combo.analysis.low != null ? ` • ${combo.analysis.low}B/${5 - combo.analysis.low}H` : ""} • Écart: ${spread}${fit}`;
     card.appendChild(details);
   }
   

@@ -137,7 +137,9 @@
           <div class="prob-summary" id="prob-summary"></div>
 
           <div class="prob-mode-tabs">
-            <button type="button" class="prob-mode active" data-mode="combined">Score combiné</button>
+            <button type="button" class="prob-mode active" data-mode="pro">Score PRO v2</button>
+            <button type="button" class="prob-mode" data-mode="combined">Combiné</button>
+            <button type="button" class="prob-mode" data-mode="recent">Récent (100)</button>
             <button type="button" class="prob-mode" data-mode="historical">Historique</button>
             <button type="button" class="prob-mode" data-mode="theoretical">Théorique</button>
           </div>
@@ -152,8 +154,8 @@
           <div class="prob-grid prob-grid-stars" id="prob-grid-stars"></div>
 
           <p class="prob-footer-note">
-            Probabilité théorique : <strong>10 %</strong> par boule et <strong>16,7 %</strong> par étoile à chaque tirage.
-            Le score combiné mélange fréquence historique, tendance récente (200 tirages) et léger bonus « en retard ».
+            <strong>Score PRO v2</strong> : historique (20 %) + tendance 100 tirages (24 %) + momentum (16 %) + retard sigmoïde (10 %) + régularité (14 %) + synergies paires (11 %) + unicité (5 %).
+            Les grilles générées sont optimisées parmi plusieurs candidats (patterns somme/parité validés).
           </p>
         </div>
       </div>
@@ -332,6 +334,7 @@
   </footer>
 
   <script src="js/auth.js"></script>
+  <script src="js/prob-engine.js"></script>
   <script src="js/advanced.js"></script>
   <script src="js/app.js"></script>
 </body>

@@ -1,0 +1,7 @@
+extracted/
+scripts/
+*.zip
+*.md
+.git/
+__pycache__/
+*.pyc

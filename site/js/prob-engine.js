@@ -1,12 +1,12 @@
 /**
- * Moteur de probabilités PRO v2 — scores combinés, validation patterns, optimisation grilles.
+ * Moteur de probabilités PRO v3 — EWMA, momentum multi-fenêtres, ultra_score.
  */
 (function (global) {
   const THEO_BALL = 10;
   const THEO_STAR = 16.67;
 
   function numScore(item) {
-    return item.pro_score ?? item.smart_score / 2.5 ?? 0.5;
+    return item.ultra_score ?? item.pro_score ?? item.smart_score / 2.5 ?? 0.5;
   }
 
   function buildProbabilityScores(data) {
@@ -15,11 +15,16 @@
       theoretical: THEO_BALL,
       historical: f.pct,
       recent: f.recent_pct ?? 0,
-      combined: Math.round((f.pro_score ?? f.smart_score / 2.5) * 100),
-      pro: Math.round((f.pro_score ?? 0) * 100),
+      combined: Math.round((f.ultra_score ?? f.pro_score ?? f.smart_score / 2.5) * 100),
+      pro: Math.round((f.ultra_score ?? f.pro_score ?? 0) * 100),
+      ultra: Math.round((f.ultra_score ?? 0) * 100),
       last_draw_ago: f.last_draw_ago,
       smart_score: f.smart_score,
       pro_score: f.pro_score,
+      ultra_score: f.ultra_score,
+      ewma_score: f.ewma_score,
+      multi_momentum: f.multi_momentum,
+      poisson_prob: f.poisson_prob,
       regularity: f.regularity,
       overdue_score: f.overdue_score,
       overdue_sigmoid: f.overdue_sigmoid,
@@ -37,11 +42,16 @@
       theoretical: THEO_STAR,
       historical: f.pct,
       recent: f.recent_pct ?? 0,
-      combined: Math.round((f.pro_score ?? f.smart_score / 2.5) * 100),
-      pro: Math.round((f.pro_score ?? 0) * 100),
+      combined: Math.round((f.ultra_score ?? f.pro_score ?? f.smart_score / 2.5) * 100),
+      pro: Math.round((f.ultra_score ?? f.pro_score ?? 0) * 100),
+      ultra: Math.round((f.ultra_score ?? 0) * 100),
       last_draw_ago: f.last_draw_ago,
       smart_score: f.smart_score,
       pro_score: f.pro_score,
+      ultra_score: f.ultra_score,
+      ewma_score: f.ewma_score,
+      multi_momentum: f.multi_momentum,
+      poisson_prob: f.poisson_prob,
       regularity: f.regularity,
       overdue_score: f.overdue_score,
       momentum_score: f.momentum_score,
@@ -64,7 +74,7 @@
     if (mode === "theoretical") return item.theoretical;
     if (mode === "historical") return item.historical;
     if (mode === "recent") return item.recent ?? 0;
-    if (mode === "pro") return item.pro ?? item.combined;
+    if (mode === "pro" || mode === "ultra") return item.ultra ?? item.pro ?? item.combined;
     return item.combined;
   }
 
@@ -140,12 +150,13 @@
       balls.reduce((s, n) => s + (ballMap[n]?.uniqueness_bonus || 0), 0) / balls.length;
 
     const raw =
-      ballAvg * 0.42 +
-      starAvg * 0.22 +
-      synergyAvg * 0.12 +
+      ballAvg * 0.38 +
+      starAvg * 0.20 +
+      synergyAvg * 0.10 +
       pairBonus * 0.08 +
-      patternFit * 0.11 +
-      uniq * 0.05;
+      patternFit * 0.12 +
+      uniq * 0.05 +
+      (balls.reduce((s, n) => s + (ballMap[n]?.ewma_score || 0), 0) / balls.length) * 0.07;
 
     return Math.round(raw * 1000) / 10;
   }
@@ -168,7 +179,9 @@
       if (!available.length) break;
 
       const scored = available.map((item) => {
-        let w = numScore(item) * 2;
+        let w = numScore(item) * 2.2;
+        w += (item.ewma_score || 0) * 0.8;
+        w += (item.multi_momentum || 0.5) * 0.5;
         if (selected.length) {
           let syn = 0;
           for (const sn of selected) {

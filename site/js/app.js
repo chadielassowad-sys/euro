@@ -3,7 +3,7 @@ const THEO_BALL = 10;
 const THEO_STAR = 16.67;
 const GRID_PRICE = 2.5;
 let statsData = null;
-let probMode = "pro";
+let probMode = "ultra";
 let lastCombos = null;
 let comboHistory = JSON.parse(localStorage.getItem("comboHistory") || "[]");
 let selectedBudget = 20;
@@ -48,10 +48,14 @@ function renderNumList(items, maxCount, type = "hot") {
     
     let infoText = `${item.count}× (${item.pct ?? Math.round((item.count / (maxCount || 1)) * 100)}%)`;
     
-    if (item.pro !== undefined) {
-      infoText += ` · PRO ${item.pro}`;
+    if (item.ultra_score !== undefined || item.pro_score !== undefined) {
+      const u = item.ultra_score != null ? Math.round(item.ultra_score * 100) : item.pro;
+      infoText += ` · ULTRA ${u}`;
     } else if (item.smart_score !== undefined) {
       infoText += ` · Smart ${Math.round(item.smart_score * 100)}`;
+    }
+    if (item.ewma_score !== undefined && item.ewma_score > 0.3) {
+      infoText += ` · EWMA ${Math.round(item.ewma_score * 100)}`;
     }
     if (item.momentum_delta !== undefined && item.momentum_delta !== 0) {
       infoText += ` · Mom ${item.momentum_delta > 0 ? "+" : ""}${item.momentum_delta}`;
@@ -430,7 +434,7 @@ function getPctForMode(item, mode) {
   if (mode === "theoretical") return item.theoretical;
   if (mode === "historical") return item.historical;
   if (mode === "recent") return item.recent ?? 0;
-  if (mode === "pro") return item.pro ?? item.combined;
+  if (mode === "pro" || mode === "ultra") return item.ultra ?? item.pro ?? item.combined;
   return item.combined;
 }
 
@@ -471,8 +475,8 @@ function renderProbGrid(container, items, topNums, isStar = false) {
             ? "historique"
             : probMode === "recent"
               ? "récent"
-              : probMode === "pro"
-                ? "PRO"
+              : probMode === "pro" || probMode === "ultra"
+                ? "ULTRA"
                 : "score",
       ])
     );
@@ -649,9 +653,9 @@ function renderComboCard(combo, index, showActions = true) {
   card.appendChild(row);
   
   const scoreEl = el("div", { className: "combo-score" });
-  scoreEl.appendChild(document.createTextNode(`Score PRO : ${combo.score} `));
+  scoreEl.appendChild(document.createTextNode(`Score ULTRA : ${combo.score} `));
   const hint = el("span");
-  hint.textContent = "(optimisation multi-critères v2)";
+  hint.textContent = "(moteur statistique v3)";
   scoreEl.appendChild(hint);
   card.appendChild(scoreEl);
   

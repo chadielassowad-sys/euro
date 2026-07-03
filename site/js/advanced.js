@@ -7,10 +7,10 @@ const STRATEGIES = [
     desc: "pro_score + synergies paires + patterns historiques",
     weight: (item, data) => {
       const pro = item.pro_score ?? (item.smart_score || 1) / 2.5;
-      const reg = item.regularity || 0;
-      const syn = item.pair_synergy || 0;
-      const mom = item.momentum_score ?? 0.5;
-      return pro * 2.2 + reg * 0.9 + syn * 1.1 + mom * 0.6;
+      const ultra = item.ultra_score ?? pro;
+      const ewma = item.ewma_score ?? 0;
+      const mm = item.multi_momentum ?? 0.5;
+      return ultra * 2.2 + ewma * 1.0 + mm * 0.8 + (item.regularity || 0) * 0.6;
     },
   },
   {

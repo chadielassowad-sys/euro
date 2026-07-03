@@ -19,6 +19,7 @@ CSV_FILES = [
     EXTRACTED / "euromillions_4" / "euromillions_4.csv",
     EXTRACTED / "euromillions_201902" / "euromillions_201902.csv",
     EXTRACTED / "euromillions_202002" / "euromillions_202002.csv",
+    BASE / "euromillions_202002.csv",
 ]
 
 
@@ -86,8 +87,59 @@ def load_draws():
                         "day_name": day_name,
                     }
                 )
-    draws.sort(key=lambda d: d["date"])
-    return draws
+    by_id = {d["id"]: d for d in draws}
+    return sorted(by_id.values(), key=lambda d: d["date"])
+
+
+def compute_ewma(draws, max_num, is_ball, alpha=0.04):
+    """Moyenne mobile exponentielle — poids plus fort aux tirages récents."""
+    scores = {i: 0.0 for i in range(1, max_num + 1)}
+    for d in reversed(draws):
+        nums = d["balls"] if is_ball else d["stars"]
+        for num in range(1, max_num + 1):
+            hit = 1.0 if num in nums else 0.0
+            scores[num] = alpha * hit + (1 - alpha) * scores[num]
+    max_s = max(scores.values()) or 1
+    return {k: round(v / max_s, 4) for k, v in scores.items()}
+
+
+def compute_multi_momentum(draws, max_num, is_ball, windows=(10, 25, 50)):
+    """Momentum multi-fenêtres : comparaison récent vs période précédente."""
+    n = len(draws)
+    result = {}
+    weights = {10: 0.5, 25: 0.3, 50: 0.2}
+    for num in range(1, max_num + 1):
+        score = 0.0
+        for w in windows:
+            if n < w * 2:
+                continue
+            recent = draws[-w:]
+            prev = draws[-w * 2 : -w]
+            rc = sum(1 for d in recent if num in (d["balls"] if is_ball else d["stars"]))
+            pc = sum(1 for d in prev if num in (d["balls"] if is_ball else d["stars"]))
+            delta = rc - pc
+            norm = max(w / 5, 1)
+            score += weights.get(w, 0.2) * _clamp(0.5 + delta / norm, 0, 1)
+        result[num] = round(score, 4)
+    return result
+
+
+def wilson_interval(successes, trials, z=1.96):
+    if trials <= 0:
+        return 0.0, 0.0
+    p = successes / trials
+    denom = 1 + z * z / trials
+    centre = p + z * z / (2 * trials)
+    margin = z * math.sqrt((p * (1 - p) + z * z / (4 * trials)) / trials)
+    return round((centre - margin) / denom, 4), round((centre + margin) / denom, 4)
+
+
+def poisson_overdue_prob(absence, avg_interval):
+    """P(sortie prochaine) modèle Poisson sur l'intervalle."""
+    if avg_interval <= 0:
+        return 0.5
+    lam = max(absence / avg_interval, 0)
+    return round(1 - math.exp(-lam * 0.35), 4)
 
 
 def _sigmoid(x, center=1.0, scale=1.2):
@@ -110,8 +162,16 @@ def enhance_probability_scores(
     expected_ball,
     expected_star,
     recent_n,
+    ewma_balls=None,
+    ewma_stars=None,
+    multi_mom_b=None,
+    multi_mom_s=None,
 ):
-    """Moteur PRO v2 : fusion bayésienne historique + récent + momentum + synergies."""
+    """Moteur PRO v3 : EWMA + momentum multi-fenêtres + Poisson + Wilson + synergies."""
+    ewma_balls = ewma_balls or {}
+    ewma_stars = ewma_stars or {}
+    multi_mom_b = multi_mom_b or {}
+    multi_mom_s = multi_mom_s or {}
     max_recent_b = max(recent_ball_counts.values()) if recent_ball_counts else 1
     max_recent_s = max(recent_star_counts.values()) if recent_star_counts else 1
 
@@ -130,6 +190,10 @@ def enhance_probability_scores(
 
     def apply_pro(items, expected, recent_counts, max_recent, mom_map, max_mom, is_ball):
         std_est = math.sqrt(expected) if expected > 0 else 1.0
+        trials = n * (5 if is_ball else 2)
+        ewma_map = ewma_balls if is_ball else ewma_stars
+        mm_map = multi_mom_b if is_ball else multi_mom_s
+
         for item in items:
             num = item["num"]
             recent_c = recent_counts.get(num, 0)
@@ -144,13 +208,23 @@ def enhance_probability_scores(
             item["momentum_score"] = round(
                 _clamp(0.5 + delta / (2 * max_mom), 0, 1), 4
             )
+            item["multi_momentum"] = mm_map.get(num, 0.5)
+            item["ewma_score"] = ewma_map.get(num, 0)
 
             z = item["deviation"] / std_est if std_est else 0
             item["freq_z"] = round(z, 3)
-            freq_norm = _clamp(0.5 + 0.22 * z, 0.15, 0.85)
+            freq_norm = _clamp(0.5 + 0.18 * z, 0.12, 0.88)
+            item["chi2_significance"] = round(abs(z), 3)
+
+            wlo, whi = wilson_interval(item["count"], trials)
+            item["wilson_low"] = wlo
+            item["wilson_high"] = whi
 
             overdue_sig = _sigmoid(item["overdue_score"], center=1.0, scale=0.85)
             item["overdue_sigmoid"] = round(overdue_sig, 4)
+            item["poisson_prob"] = poisson_overdue_prob(
+                item["last_draw_ago"], item["avg_interval"]
+            )
 
             syn = synergy_b.get(num, 0) / max_syn_b if is_ball and max_syn_b else 0
             item["pair_synergy"] = round(syn, 4) if is_ball else 0
@@ -170,17 +244,25 @@ def enhance_probability_scores(
             item["uniqueness_bonus"] = round(1 - min(pop, 0.35), 3)
 
             pro = (
-                freq_norm * 0.20
-                + recent_score * 0.24
-                + item["momentum_score"] * 0.16
-                + overdue_sig * 0.10
-                + item["regularity"] * 0.14
-                + syn * 0.11
-                + item["uniqueness_bonus"] * 0.05
+                freq_norm * 0.12
+                + item["ewma_score"] * 0.22
+                + recent_score * 0.14
+                + item["multi_momentum"] * 0.18
+                + item["momentum_score"] * 0.06
+                + item["poisson_prob"] * 0.08
+                + item["regularity"] * 0.10
+                + syn * 0.07
+                + item["uniqueness_bonus"] * 0.03
             )
             item["pro_score"] = round(pro, 4)
-            item["smart_score"] = round(pro * 2.5, 3)
-            item["prob_pct"] = round(pro * 100, 1)
+            item["ultra_score"] = round(
+                pro * 0.55
+                + item["ewma_score"] * 0.25
+                + item["multi_momentum"] * 0.20,
+                4,
+            )
+            item["smart_score"] = round(item["ultra_score"] * 2.5, 3)
+            item["prob_pct"] = round(item["ultra_score"] * 100, 1)
 
         return items
 
@@ -388,6 +470,11 @@ def advanced_analysis(draws):
         momentum_balls = []
         momentum_stars = []
 
+    ewma_balls = compute_ewma(draws[-min(200, n):], 50, True)
+    ewma_stars = compute_ewma(draws[-min(200, n):], 12, False)
+    multi_mom_b = compute_multi_momentum(draws, 50, True)
+    multi_mom_s = compute_multi_momentum(draws, 12, False)
+
     enhance_probability_scores(
         balls_freq,
         stars_freq,
@@ -400,6 +487,10 @@ def advanced_analysis(draws):
         expected_ball,
         expected_star,
         recent_n,
+        ewma_balls,
+        ewma_stars,
+        multi_mom_b,
+        multi_mom_s,
     )
 
     # Patterns les plus fréquents
@@ -454,7 +545,14 @@ def advanced_analysis(draws):
     return {
         "meta": {
             "total_draws": n,
-            "probability_engine": "pro_v2",
+            "probability_engine": "pro_v3",
+            "engine_features": [
+                "EWMA 200 tirages",
+                "Momentum 10/25/50",
+                "Poisson retard",
+                "Wilson CI",
+                "Synergies paires",
+            ],
             "first_date": draws[0]["date_str"] if draws else None,
             "last_date": draws[-1]["date_str"] if draws else None,
             "last_draw": {
@@ -468,7 +566,7 @@ def advanced_analysis(draws):
         },
         "balls": {
             "frequencies": balls_freq,
-            "hot": sorted(balls_freq, key=lambda x: x["pro_score"], reverse=True)[:10],
+            "hot": sorted(balls_freq, key=lambda x: x["ultra_score"], reverse=True)[:10],
             "cold": sorted(balls_freq, key=lambda x: x["count"])[:10],
             "overdue": sorted(balls_freq, key=lambda x: x["last_draw_ago"], reverse=True)[:10],
             "regular": sorted(balls_freq, key=lambda x: x["regularity"], reverse=True)[:10],
@@ -476,7 +574,7 @@ def advanced_analysis(draws):
         },
         "stars": {
             "frequencies": stars_freq,
-            "hot": sorted(stars_freq, key=lambda x: x["pro_score"], reverse=True)[:5],
+            "hot": sorted(stars_freq, key=lambda x: x["ultra_score"], reverse=True)[:5],
             "cold": sorted(stars_freq, key=lambda x: x["count"])[:5],
             "overdue": sorted(stars_freq, key=lambda x: x["last_draw_ago"], reverse=True)[:5],
             "regular": sorted(stars_freq, key=lambda x: x["regularity"], reverse=True)[:5],
@@ -495,6 +593,15 @@ def advanced_analysis(draws):
                 reverse=True,
             )[:6],
         },
+        "recent_10_draws": [
+            {
+                "id": d["id"],
+                "date": d["date_str"],
+                "balls": d["balls"],
+                "stars": d["stars"],
+            }
+            for d in draws[-10:][::-1]
+        ],
         "momentum": {
             "balls": momentum_balls[:15],
             "stars": momentum_stars[:6],
